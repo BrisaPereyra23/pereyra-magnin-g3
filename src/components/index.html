@@ -1,10 +1,20 @@
-import React from "react";
+<!DOCTYPE html>
+<html lang="en">
 
-function Home() {
-    return(
-        <div class="container">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Home</title>
+</head>
+
+<body>
+    <div class="container">
         <h1>UdeSA Movies</h1>
 
+        <!-- Menu -->
         <nav>
             <ul class="nav nav-tabs my-4">
                 <li class="nav-item">
@@ -20,9 +30,9 @@ function Home() {
                     <a class="nav-link" href="favorites.html">Favoritas</a>
                 </li>
             </ul>
-            
+            <!-- Buscador -->
             <form class="search-form" action="results.html" method="get">
-                <input type="text" class="" name="searchData" placeholder="Buscar..." value=""/>
+                <input type="text" class="" name="searchData" placeholder="Buscar..." value="">
                 <button type="submit" class="btn btn-success btn-sm">Buscar</button>
             </form>
         </nav>
@@ -31,7 +41,7 @@ function Home() {
         <section class="row cards" id="movies">
             <article class="single-card-movie">
                 <img src="https://image.tmdb.org/t/p/w500/tzrJulItjttxzoX0t3B2My46TS7.jpg" class="card-img-top"
-                    alt="..."/>
+                    alt="...">
                 <div class="cardBody">
                     <h5 class="card-title">The Thursday Murder Club</h5>
                     <p class="card-text">A group of senior sleuths passionate about solving cold cases get plunged into
@@ -42,7 +52,7 @@ function Home() {
             </article>
             <article class="single-card-movie">
                 <img src="https://image.tmdb.org/t/p/w500/9PXZIUsSDh4alB80jheWX4fhZmy.jpg" class="card-img-top"
-                    alt="..."/>
+                    alt="...">
                 <div class="cardBody">
                     <h5 class="card-title">F1</h5>
                     <p class="card-text">Racing legend Sonny Hayes is coaxed out of retirement to lead a struggling
@@ -53,7 +63,7 @@ function Home() {
             </article>
             <article class="single-card-movie">
                 <img src="https://image.tmdb.org/t/p/w500/A06yXys3hrCWu8xiNoHCFLTG5SH.jpg" class="card-img-top"
-                    alt="..."/>
+                    alt="...">
                 <div class="cardBody">
                     <h5 class="card-title">I Know What You Did Last Summer</h5>
                     <p class="card-text">When five friends inadvertently cause a deadly car accident, they cover up
@@ -66,7 +76,7 @@ function Home() {
             </article>
             <article class="single-card-movie">
                 <img src="https://image.tmdb.org/t/p/w500/ombsmhYUqR4qqOLOxAyr5V8hbyv.jpg" class="card-img-top"
-                    alt="..."/>
+                    alt="...">
                 <div class="cardBody">
                     <h5 class="card-title">Superman</h5>
                     <p class="card-text">Superman, a journalist in Metropolis, embarks on a journey to reconcile his
@@ -81,7 +91,7 @@ function Home() {
         <section class="row cards" id="now-playing">
             <article class="single-card-playing">
                 <img src="https://image.tmdb.org/t/p/w500/yvirUYrva23IudARHn3mMGVxWqM.jpg" class="card-img-top"
-                    alt="..."/>
+                    alt="...">
                 <div class="cardBody">
                     <h5 class="card-title">War of the Worlds</h5>
                     <p class="card-text">Will Radford is a top analyst for Homeland Security who tracks potential
@@ -94,7 +104,7 @@ function Home() {
             </article>
             <article class="single-card-playing">
                 <img src="https://image.tmdb.org/t/p/w500/9PXZIUsSDh4alB80jheWX4fhZmy.jpg" class="card-img-top"
-                    alt="..."/>
+                    alt="...">
                 <div class="cardBody">
                     <h5 class="card-title">F1</h5>
                     <p class="card-text">Racing legend Sonny Hayes is coaxed out of retirement to lead a struggling
@@ -105,7 +115,7 @@ function Home() {
             </article>
             <article class="single-card-playing">
                 <img src="https://image.tmdb.org/t/p/w500/12Va3oO3oYUdOd75zM57Nx1976a.jpg" class="card-img-top"
-                    alt="..."/>
+                    alt="...">
                 <div class="cardBody">
                     <h5 class="card-title">Eenie Meanie</h5>
                     <p class="card-text">A former teenage getaway driver gets dragged back into her unsavory past when a
@@ -117,7 +127,7 @@ function Home() {
             </article>
             <article class="single-card-playing">
                 <img src="https://image.tmdb.org/t/p/w500/1RICxzeoNCAO5NpcRMIgg1XT6fm.jpg" class="card-img-top"
-                    alt="..."/>
+                    alt="...">
                 <div class="cardBody">
                     <h5 class="card-title">Jurassic World Rebirth</h5>
                     <p class="card-text">Five years after the events of Jurassic World Dominion, covert operations
@@ -132,7 +142,7 @@ function Home() {
             </article>
             <article class="single-card-playing">
                 <img src="https://image.tmdb.org/t/p/w500/m52XidzKx94bKlToZfEXUnL3pdy.jpg" class="card-img-top"
-                    alt="..."/>
+                    alt="...">
                 <div class="cardBody">
                     <h5 class="card-title">Together</h5>
                     <p class="card-text">With a move to the countryside already testing the limits of a couple's
@@ -144,7 +154,7 @@ function Home() {
             </article>
             <article class="single-card-playing">
                 <img src="https://image.tmdb.org/t/p/w500/A06yXys3hrCWu8xiNoHCFLTG5SH.jpg" class="card-img-top"
-                    alt="..."/>
+                    alt="...">
                 <div class="cardBody">
                     <h5 class="card-title">I Know What You Did Last Summer</h5>
                     <p class="card-text">When five friends inadvertently cause a deadly car accident, they cover up
@@ -160,7 +170,7 @@ function Home() {
         <section class="row cards" id="tv-show">
             <article class="single-card-tv">
                 <img src="https://image.tmdb.org/t/p/w500/9mYeRoWguq5etbwJRdF8BXFKiF.jpg" class="card-img-top"
-                    alt="..."/>
+                    alt="...">
                 <div class="cardBody">
                     <h5 class="card-title">The Terminal List: Dark Wolf</h5>
                     <p class="card-text">Before The Terminal List, Navy SEAL Ben Edwards finds himself entangled in the
@@ -173,7 +183,7 @@ function Home() {
             </article>
             <article class="single-card-tv">
                 <img src="https://image.tmdb.org/t/p/w500/yueXS3q8BtoWekcHOATFHicLl3e.jpg" class="card-img-top"
-                    alt="..."/>
+                    alt="...">
                 <div class="cardBody">
                     <h5 class="card-title">Alien: Earth</h5>
                     <p class="card-text">When the mysterious deep space research vessel USCSS Maginot crash-lands on
@@ -185,7 +195,7 @@ function Home() {
             </article>
             <article class="single-card-tv">
                 <img src="https://image.tmdb.org/t/p/w500/yb4F1Oocq8GfQt6iIuAgYEBokhG.jpg" class="card-img-top"
-                    alt="..."/>
+                    alt="...">
                 <div class="cardBody">
                     <h5 class="card-title">Peacemaker</h5>
                     <p class="card-text">The continuing story of Peacemaker, a vainglorious superhero/supervillain who
@@ -198,7 +208,7 @@ function Home() {
             </article>
             <article class="single-card-tv">
                 <img src="https://image.tmdb.org/t/p/w500/6TPGDrU9MyWbn2TpggJphVAVXiq.jpg" class="card-img-top"
-                    alt="..."/>
+                    alt="...">
                 <div class="cardBody">
                     <h5 class="card-title">Upload</h5>
                     <p class="card-text">In 2033, people who are near death can be “uploaded” into virtual reality
@@ -211,7 +221,7 @@ function Home() {
             </article>
             <article class="single-card-tv">
                 <img src="https://image.tmdb.org/t/p/w500/3m1UaMLgmpj6krNaQwTpftYFsnz.jpg" class="card-img-top"
-                    alt="..."/>
+                    alt="...">
                 <div class="cardBody">
                     <h5 class="card-title">A Record of a Mortal's Journey to Immortality</h5>
                     <p class="card-text">A poor and ordinary boy from a village joins a minor sect in Jiang Hu and
@@ -229,7 +239,7 @@ function Home() {
         <section class="row cards" id="on-air-today">
             <article class="single-card-on-air mb-3">
                 <img src="https://image.tmdb.org/t/p/w500/wRpCqsJFyKNuh5FMegNPrhzp2NF.jpg" class="card-img-top"
-                    alt="..."/>
+                    alt="...">
                 <div class="cardBody">
                     <h5 class="card-title">SAKAMOTO DAYS</h5>
                     <p class="card-text">Once the greatest hitman of all, Taro Sakamoto retired in the name of love. But
@@ -240,7 +250,7 @@ function Home() {
             </article>
             <article class="single-card-on-air mb-3">
                 <img src="https://image.tmdb.org/t/p/w500/u9cmfrKrUj0sykZc4BrdgcXbVN1.jpg" class="card-img-top"
-                    alt="..."/>
+                    alt="...">
                 <div class="cardBody">
                     <h5 class="card-title">Moonlit Reunion</h5>
                     <p class="card-text">Mei Zhuyu, a calm and reserved nobleman from a lesser branch of the Mei family,
@@ -257,7 +267,7 @@ function Home() {
             </article>
             <article class="single-card-on-air mb-3">
                 <img src="https://image.tmdb.org/t/p/w500/3bzECfllho8PphdYujLUIuhncJD.jpg" class="card-img-top"
-                    alt="..."/>
+                    alt="...">
                 <div class="cardBody">
                     <h5 class="card-title">Binnelanders</h5>
                     <p class="card-text">A South African Afrikaans soap opera. It is set in and around the fictional
@@ -269,7 +279,7 @@ function Home() {
             </article>
             <article class="single-card-on-air mb-3">
                 <img src="https://image.tmdb.org/t/p/w500/15yDwRPWsI75RdJaBVgb4K5m94I.jpg" class="card-img-top"
-                    alt="..."/>
+                    alt="...">
                 <div class="cardBody">
                     <h5 class="card-title">When Destiny Brings the Demon</h5>
                     <p class="card-text">Modern-day office drone Zou Yan accidentally stumbles into the world of
@@ -286,7 +296,7 @@ function Home() {
             </article>
             <article class="single-card-on-air mb-3">
                 <img src="https://image.tmdb.org/t/p/w500/jfFNydakwvbeACEwSd2Gh8UWtba.jpg" class="card-img-top"
-                    alt="..."/>
+                    alt="...">
                 <div class="cardBody">
                     <h5 class="card-title">Sturm der Liebe</h5>
                     <p class="card-text">These are the stories of relationships taking place in the fictional five-star
@@ -298,7 +308,7 @@ function Home() {
             </article>
             <article class="single-card-on-air mb-3">
                 <img src="https://image.tmdb.org/t/p/w500/pv5WNnLUo7mpT8k901Lo8UovrqI.jpg" class="card-img-top"
-                    alt="..."/>
+                    alt="...">
                 <div class="cardBody">
                     <h5 class="card-title">Raw</h5>
                     <p class="card-text">A regularly scheduled, live, year-round program featuring some of the biggest
@@ -310,7 +320,20 @@ function Home() {
 
         </section>
     </div>
-    )
-}
 
-export default Home;
+    <!-- Bootsrap scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+        integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+        crossorigin="anonymous"></script>
+
+
+
+</body>
+
+</html>

@@ -3,7 +3,6 @@ import './App.css';
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
-// Screens
 import Home from './screens/Home/Home';
 import Movies from './screens/Movies/Movies';
 import Series from './screens/Series/Series';
@@ -30,13 +29,15 @@ function App() {
       <div>
       <Navbar />
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/movies" component={Movies} />
-        <Route path="/series" component={Series} />
-        <Route path="/favorites" component={Favorites} />
+        <Route exact path="/" exact={true} component={Home} />
+        <Route path="/movies/:id" exact={true} component={Movies} />
+        <Route path="/series/:id" component={Series} />
+        <Route path="/favorites" exact={true} component={Favorites} />
         <Route path="/detail/:id" component={Detail} />
-        <Route path="/results" component={Results} />
+        <Route path="/results/:query" exact={true} component={Results} />
         <Route component={NotFound} />
+        
+      
       </Switch>
     </div>
     </div>

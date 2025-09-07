@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Movies extends Component {
   constructor(props) {
@@ -7,31 +7,124 @@ class Movies extends Component {
     this.state = {
       movies: [],
       cargando: true,
-      error: null
+      error: null,
+      page: 1,
+      filter: ""
     };
   }
 
   componentDidMount() {
-    fetch("https://api.themoviedb.org/3/movie/popular?api_key=289ceab3aca6a2fae63aa3153d95ab4b&language=es-ES&page=1")
-      .then(res => res.json())
-      .then(data => this.setState({ movies: data.results, cargando: false }))
-      .catch(err => this.setState({ error: err.message, cargando: false }));
+    this.fetchMovies();
   }
 
+  fetchMovies = () => {
+    fetch(
+      `https://api.themoviedb.org/3/movie/popular?api_key=289ceab3aca6a2fae63aa3153d95ab4b&language=es-ES&page=${this.state.page}`
+    )
+      .then((res) => res.json())
+      .then((data) =>
+        this.setState({
+          movies: [...this.state.movies, ...data.results],
+          cargando: false
+        })
+      )
+      .catch((err) =>
+        this.setState({ error: err.message, cargando: false })
+      );
+  };
+
+  cargarMas = () => {
+    this.setState(
+      { page: this.state.page + 1, cargando: true },
+      this.fetchMovies
+    );
+  };
+
+  manejarFiltro = (e) => {
+    this.setState({ filter: e.target.value });
+  };
+
   render() {
-    if (this.state.cargando) return <p>Cargando películas...</p>;
-    if (this.state.error) return <p>Error: {this.state.error}</p>;
+    const { movies, cargando, error, filter } = this.state;
+
+    if (cargando && movies.length === 0) return <p>Cargando películas...</p>;
+    if (error) return <p>Error: {error}</p>;
+
+    // filtro dinámico con .filter() (de teoría)
+    const moviesFiltradas = movies.filter((movie) =>
+      movie.title.toLowerCase().includes(filter.toLowerCase())
+    );
 
     return (
-      <div>
-        <h1>Películas Populares</h1>
-        <ul>
-          {this.state.movies.map(movie => (
-            <li key={movie.id}>
-              <Link to={`/detail/${movie.id}`}>{movie.title}</Link>
+      <div className="container">
+        <h1>UdeSA Movies</h1>
+
+        {/* Navbar */}
+        <nav>
+          <ul className="nav nav-tabs my-4">
+            <li className="nav-item">
+              <a className="nav-link" href="/">Home</a>
             </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/movies">Películas</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/series">Series</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/favoritos">Favoritas</a>
+            </li>
+          </ul>
+
+          <form className="search-form" action="/results" method="get">
+            <input type="text" name="searchData" placeholder="Buscar..." />
+            <button type="submit" className="btn btn-success btn-sm">
+              Buscar
+            </button>
+          </form>
+        </nav>
+
+        <h2 className="alert alert-primary">Todas las películas</h2>
+
+        {/* Filtro */}
+        <form className="filter-form px-0 mb-3">
+          <input
+            type="text"
+            name="filter"
+            placeholder="Buscar dentro de la lista"
+            value={filter}
+            onChange={this.manejarFiltro}
+          />
+        </form>
+
+        {/* Cards de películas */}
+        <section className="row cards all-movies" id="movies">
+          {moviesFiltradas.map((movie) => (
+            <article className="single-card-movie col-md-3 mb-4" key={movie.id}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                className="card-img-top"
+                alt={movie.title}
+              />
+              <div className="cardBody">
+                <h5 className="card-title">{movie.title}</h5>
+                <p className="card-text">
+                  {movie.overview
+                    ? movie.overview.substring(0, 100) + "..."
+                    : "Sin descripción."}
+                </p>
+                <Link to={`/detail/movie/${movie.id}`} className="btn btn-primary">
+                  Ver más
+                </Link>
+              </div>
+            </article>
           ))}
-        </ul>
+        </section>
+
+        {/* Botón cargar más */}
+        <button className="btn btn-info" onClick={this.cargarMas}>
+          Cargar más
+        </button>
       </div>
     );
   }
