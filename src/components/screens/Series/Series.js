@@ -12,7 +12,7 @@ class Series extends Component {
   }
 
   componentDidMount() {
-    fetch("https://api.themoviedb.org/3/tv/popular?api_key=289ceab3aca6a2fae63aa3153d95ab4b&language=es-ES&page=1")
+    fetch(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=&api_key=eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyODljZWFiM2FjYTZhMmZhZTYzYWEzMTUzZDk1YWI0YiIsIm5iZiI6MTc1NzI1NjE1MC44OTEsInN1YiI6IjY4YmQ5OWQ2YjRiM2JiYjczYjliYzIyNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hn2Sy_eCyWgGOCC7J-_Mo0__KiLW-6hq_rrR54C6gzI`)
       .then(res => res.json())
       .then(data => this.setState({ series: data.results, cargando: false }))
       .catch(err => this.setState({ error: err.message, cargando: false }));

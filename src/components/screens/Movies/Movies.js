@@ -19,7 +19,7 @@ class Movies extends Component {
 
   fetchMovies = () => {
     fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=289ceab3aca6a2fae63aa3153d95ab4b&language=es-ES&page=${this.state.page}`
+      `https/api.themoviedb.org/3/movie/popular?language=en-US&page=${this.state.page}&api_key=eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyODljZWFiM2FjYTZhMmZhZTYzYWEzMTUzZDk1YWI0YiIsIm5iZiI6MTc1NzI1NjE1MC44OTEsInN1YiI6IjY4YmQ5OW_`
     )
       .then((res) => res.json())
       .then((data) =>

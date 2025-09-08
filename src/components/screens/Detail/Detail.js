@@ -15,7 +15,7 @@ class Detail extends Component {
     const { id, tipo } = this.props.match.params; // viene de la ruta parametrizada
 
     fetch(
-      `https://api.themoviedb.org/3/${tipo}/${id}?api_key=289ceab3aca6a2fae63aa3153d95ab4b&language=es-ES`
+      `https://api.themoviedb.org/3/${tipo}/${id}?language=en-US&page=&api_key=eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyODljZWFiM2FjYTZhMmZhZTYzYWEzMTUzZDk1YWI0YiIsIm5iZiI6MTc1NzI1NjE1MC44OTEsInN1YiI6IjY4YmQ5OWQ2YjRiM2JiYjczYjliYzIyNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hn2Sy_eCyWgGOCC7J-_Mo0__KiLW-6hq_rrR54C6gzI    `
     )
       .then((res) => res.json())
       .then((data) => this.setState({ item: data, cargando: false }))
