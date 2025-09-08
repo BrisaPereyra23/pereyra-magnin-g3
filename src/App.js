@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import Navbar from "../src/components/Navbar/Navbar";
 import Loader from "../src/components/Loader/Loader";
 import Card from "../src/components/Card/Card";
+import Cards from "../src/components/Cards/Cards";
 import Footer from "../src/components/Footer/Footer";
 import Header from "../src/components/Header/Header";
 import Detail from "../src/components/screens/Detail/Detail"
@@ -28,7 +29,7 @@ function App() {
         <Route path="/favorites" exact={true} component={Favorites} />
         <Route path="/detail/:id" component={Detail} />
         <Route path="/results/:query" exact={true} component={Results} />
-        <Route component={NotFound} />
+        <Route path="" component={NotFound} />
       </Switch>
       <Loader/>
       <Card/>
