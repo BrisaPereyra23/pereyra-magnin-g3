@@ -7,8 +7,7 @@ import { Link } from "react-router-dom";
     <header className="bg-gray-900 text-white p-4 shadow-md">
       <div className="flex justify-between items-center">
         <h1 className="text-xl font-bold">Popcorn Studio</h1>
-        <img src="./img/Logo_Peliculas" className="peliculas-image" alt="logo" />
-
+        <img src="./img/Logo_Peliculas.png" className="peliculas-image" alt="logo" />
         <Navbar/>
       </div>
     </header>

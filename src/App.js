@@ -23,10 +23,10 @@ function App() {
       <Header/>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/movies/:id" exact={true} component={Movies} />
-        <Route path="/series/:id" component={Series} />
+        <Route path="/movies/id/:id" exact={true} component={Movies} />
+        <Route path="/series/id/:id" component={Series} />
         <Route path="/favorites" exact={true} component={Favorites} />
-        <Route path="/detail/:id" component={Detail} />
+        <Route path="/detail/id/:id" component={Detail} />
         <Route path="/results/:query" exact={true} component={Results} />
         <Route path="" component={NotFound} />
       </Switch>

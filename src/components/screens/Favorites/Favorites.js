@@ -5,6 +5,8 @@ function Favorites() {
     <>
     <div className="container">
         <h1>UdeSA Movies</h1>
+        <img src="./img/Logo_Peliculas.png" className="peliculas-image" alt="logo" />
+
 
         <nav>
             <ul className="nav nav-tabs my-4">
@@ -37,7 +39,7 @@ function Favorites() {
                     <h5 className="card-title">F1</h5>
                     <p className="card-text">Racing legend Sonny Hayes is coaxed out of retirement to lead a struggling
                         Formula 1 team—and mentor a young hotshot driver—while chasing one more chance at glory.</p>
-                    <a href="movie.html" className="btn btn-primary">Ver más</a>
+                    <a href="movie.js" className="btn btn-primary">Ver más</a>
                     <a href="" className="btn alert-info">♥️</a>
                 </div>
             </article>

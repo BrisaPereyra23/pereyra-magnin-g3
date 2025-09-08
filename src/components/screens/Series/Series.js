@@ -38,3 +38,4 @@ class Series extends Component {
 }
 
 export default Series;
+
