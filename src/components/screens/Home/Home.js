@@ -2,7 +2,7 @@ import React from "react";
 
 function Home() {
     return(
-        <div classNameName="container">
+        <div className="container">
         <h1>UdeSA Movies</h1>
 
         <nav>

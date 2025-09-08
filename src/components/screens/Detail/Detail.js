@@ -7,12 +7,12 @@ class Detail extends Component {
       item: null,
       cargando: true,
       error: null,
-      favorito: false, // manejamos favorito solo en el state
+      favorito: false, 
     };
   }
 
   componentDidMount() {
-    const { id, tipo } = this.props.match.params; // viene de la ruta parametrizada
+    const { id, tipo } = this.props.match.params; 
 
     fetch(
       `https://api.themoviedb.org/3/${tipo}/${id}?language=en-US&page=&api_key=eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyODljZWFiM2FjYTZhMmZhZTYzYWEzMTUzZDk1YWI0YiIsIm5iZiI6MTc1NzI1NjE1MC44OTEsInN1YiI6IjY4YmQ5OWQ2YjRiM2JiYjczYjliYzIyNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hn2Sy_eCyWgGOCC7J-_Mo0__KiLW-6hq_rrR54C6gzI    `

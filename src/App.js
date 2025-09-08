@@ -2,7 +2,7 @@
 import './App.css';
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Navbar from "../src/components/Navbar/Navbar";
+import NavBar from "../src/components/Navbar/Navbar";
 import Loader from "../src/components/Loader/Loader";
 import Card from "../src/components/Card/Card";
 import Cards from "../src/components/Cards/Cards";
@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="App"> <div>
       <Header/>
-      <Navbar/>
+      <NavBar/>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/movies/:id" exact={true} component={Movies} />
