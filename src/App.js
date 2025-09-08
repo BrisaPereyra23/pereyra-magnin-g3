@@ -2,14 +2,18 @@
 import './App.css';
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Navbar from './components/Navbar/Navbar';
-import Home from './screens/Home/Home';
-import Movies from './screens/Movies/Movies';
-import Series from './screens/Series/Series';
-import Favorites from './screens/Favorites/Favorites';
-import Detail from './screens/Detail/Detail';
-import Results from './screens/Results/Results';
-import NotFound from './screens/NotFound/NotFound';
+import Navbar from "../src/components/Navbar/Navbar";
+import Loader from "../src/components/Loader/Loader";
+import Card from "../src/components/Card/Card";
+import Footer from "../src/components/Footer/Footer";
+import Header from "../src/components/Header/Header";
+import Detail from "../src/components/screens/Detail/Detail"
+import Favorites from "../src/components/screens/Favorites/Favorites"
+import Home from "../src/components/screens/Home/Home"
+import Movies from "../src/components/screens/Movies/Movies"
+import NotFound from "../src/components/screens/NotFound/NotFound"
+import Results from "../src/components/screens/Results/Results"
+import Series from "../src/components/screens/Series/Series"
 
 
 function App() {
