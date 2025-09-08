@@ -1,4 +1,4 @@
-import React, (Component) from "react";
+import React, {Component} from "react";
 import { withRouter } from "react-router-dom";
 class Formulario extends Component {
   constructor(props) {
@@ -10,7 +10,6 @@ class Formulario extends Component {
   preventDefault = (e) => {
     e.preventDefault();
     this.props.history.push(`/results/${this.state.busqueda}`);
-    this.props.history.push('/results/' + this.state.busqueda);
   } 
   controlarCambio (e) {
      e.preventDefault();
@@ -18,7 +17,7 @@ class Formulario extends Component {
   }
   render() {
     return <form className="search-form" onSubmit={this.preventDefault}>
-      <input type="text" name="searchData" placeholder="Buscar..." value={this.state.busqueda}onChange={(e) => this.controlarCambio(e)}/>
+      <input type="text" name="searchData" placeholder="Buscar..." value={this.state.busqueda} onChange={(e) => this.controlarCambio(e)}/>
       <button type="submit">Buscar</button>
     </form>;
   }
