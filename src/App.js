@@ -21,7 +21,8 @@ function App() {
   return (
     <div className="App"> <div>
       <Header/>
-      <Switch>
+      <Home/>      
+        <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/movies/id/:id" exact={true} component={Movies} />
         <Route path="/series/id/:id" component={Series} />

@@ -4,32 +4,8 @@ function Favorites() {
     return(
     <>
     <div className="container">
-        <h1>UdeSA Movies</h1>
         <img src="./img/Logo_Peliculas.png" className="peliculas-image" alt="logo" />
-
-
-        <nav>
-            <ul className="nav nav-tabs my-4">
-                <li className="nav-item">
-                    <a className="nav-link" href="index.html">Home</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="movies.html">Películas</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="series.html">Series</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="favorites.html">Favoritas</a>
-                </li>
-            </ul>
         
-            <form className="search-form" action="results.html" method="get">
-                <input type="text" className="" name="searchData" placeholder="Buscar..." value=""/>
-                <button type="submit" className="btn btn-success btn-sm">Buscar</button>
-            </form>
-        </nav>
-
         <h2 className="alert alert-primary">Películas favoritas</h2>
         <section className="row cards" id="movies">
             <article className="single-card-movie">

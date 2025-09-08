@@ -3,8 +3,7 @@ import React from "react";
 function Home() {
     return(
         <div className="container">
-        <h1>UdeSA Movies</h1>
-
+        
         <nav>
             <ul className="nav nav-tabs my-4">
                 <li className="nav-item">
@@ -48,7 +47,7 @@ function Home() {
                     <p className="card-text">Racing legend Sonny Hayes is coaxed out of retirement to lead a struggling
                         Formula 1 team—and mentor a young hotshot driver—while chasing one more chance at glory.</p>
                     <a href="movie.html" className="btn btn-primary">Ver más</a>
-                    <a href="" className="btn alert-primary">♥️</a>
+                    <a href="" className="btn alert-primary">♥</a>
                 </div>
             </article>
             <article className="single-card-movie">
@@ -61,7 +60,7 @@ function Home() {
                         later, their past comes back to haunt them and they're forced to confront a horrifying truth:
                         someone knows what they did last summer…and is hell-bent on revenge.</p>
                     <a href="movie.html" className="btn btn-primary">Ver más</a>
-                    <a href="" className="btn alert-primary">♥️</a>
+                    <a href="" className="btn alert-primary">♥</a>
                 </div>
             </article>
             <article className="single-card-movie">
@@ -72,7 +71,7 @@ function Home() {
                     <p className="card-text">Superman, a journalist in Metropolis, embarks on a journey to reconcile his
                         Kryptonian heritage with his human upbringing as Clark Kent.</p>
                     <a href="movie.html" className="btn btn-primary">Ver más</a>
-                    <a href="" className="btn alert-primary">♥️</a>
+                    <a href="" className="btn alert-primary">♥</a>
                 </div>
             </article>
         </section>
@@ -100,7 +99,7 @@ function Home() {
                     <p className="card-text">Racing legend Sonny Hayes is coaxed out of retirement to lead a struggling
                         Formula 1 team—and mentor a young hotshot driver—while chasing one more chance at glory.</p>
                     <a href="movie.html" className="btn btn-primary">Ver más</a>
-                    <a href="" className="btn alert-primary">♥️</a>
+                    <a href="" className="btn alert-primary">♥</a>
                 </div>
             </article>
             <article className="single-card-playing">
@@ -152,7 +151,7 @@ function Home() {
                         later, their past comes back to haunt them and they're forced to confront a horrifying truth:
                         someone knows what they did last summer…and is hell-bent on revenge.</p>
                     <a href="movie.html" className="btn btn-primary">Ver más</a>
-                    <a href="" className="btn alert-primary">♥️</a>
+                    <a href="" className="btn alert-primary">♥</a>
                 </div>
             </article>
         </section>
@@ -168,7 +167,7 @@ function Home() {
                         to not give himself over to his darker impulses. Every man has two wolves inside him – light and
                         dark – fighting for control. Which wolf will Ben Edwards feed?</p>
                     <a href="serie.html" className="btn btn-primary">Ver más</a>
-                    <a href="" className="btn alert-primary">♥️</a>
+                    <a href="" className="btn alert-primary">♥</a>
                 </div>
             </article>
             <article className="single-card-tv">
@@ -180,7 +179,7 @@ function Home() {
                         Earth, Wendy and a ragtag group of tactical soldiers make a fateful discovery that puts them
                         face-to-face with the planet's greatest threat.</p>
                     <a href="serie.html" className="btn btn-primary">Ver más</a>
-                    <a href="" className="btn alert-primary">♥️</a>
+                    <a href="" className="btn alert-primary">♥</a>
                 </div>
             </article>
             <article className="single-card-tv">
@@ -193,7 +192,7 @@ function Home() {
                         recovery from his duel with Bloodsport, Peacemaker soon discovers that his freedom comes at a
                         price.</p>
                     <a href="serie.html" className="btn btn-primary">Ver más</a>
-                    <a href="" className="btn alert-primary">♥️</a>
+                    <a href="" className="btn alert-primary">♥</a>
                 </div>
             </article>
             <article className="single-card-tv">
