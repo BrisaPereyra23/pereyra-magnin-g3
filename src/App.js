@@ -18,20 +18,9 @@ import Series from "../src/components/screens/Series/Series"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-      {/* Comentario en JSX img src={logo} className="App-logo" alt="" */}
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer">Learn React</a>
-      </header>
-      <div>
-      <Navbar />
+    <div className="App"> <div>
+      <Header/>
+      <Navbar/>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/movies/:id" exact={true} component={Movies} />
@@ -40,9 +29,10 @@ function App() {
         <Route path="/detail/:id" component={Detail} />
         <Route path="/results/:query" exact={true} component={Results} />
         <Route component={NotFound} />
-        
-      
       </Switch>
+      <Loader/>
+      <Card/>
+      <Footer/>
     </div>
     </div>
   );
