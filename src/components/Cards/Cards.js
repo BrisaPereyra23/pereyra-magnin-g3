@@ -36,12 +36,12 @@ class Cards extends Component {
   }
 }
 
-{/*si lo tenemos que hacer con un data */}
+{/*si lo tenemos que hacer con un data hacer con character y One character */}
 function Cards() {
   return(
     <div className="characters-list">
-        {rickAndMorty.map((peliculas) => (
-          <Link  className= "key" key={peliculas.id} to={`/rickandmorty/id/${peliculas.id}`}>
+        {Cards.map((peliculas) => (
+          <Link  className= "key" key={peliculas.id} to={`/movie/id/${peliculas.id}`}>
             <Cards 
               source={peliculas.image}
               title={peliculas.name}

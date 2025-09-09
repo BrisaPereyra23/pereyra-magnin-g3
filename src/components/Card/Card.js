@@ -3,6 +3,7 @@ import React from "react";
 import Cards from "../Cards/Cards";
 import './Card.css';
 
+{/*tiene que ir dinamico con la api */}
 function Card() {
     let peliculas = [{title:" " ,data:"  ", source:"" },
             {title:" " ,data:"  " ,source:"" },
