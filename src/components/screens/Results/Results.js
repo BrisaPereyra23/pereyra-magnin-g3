@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import Header from "../../Header/Header";
+import Footer from "../../Footer/Footer";
+import Formulario from "../../Formulario/Formulario";
+import { Link } from "react-router-dom";
+
 
 class Results extends Component {
   constructor(props) {
@@ -6,7 +11,7 @@ class Results extends Component {
     this.state = {
       resultados: [],
       cargando: true,
-      error: null
+      error: null,
     };
   }
 
@@ -23,27 +28,13 @@ class Results extends Component {
   render() {
     const { resultados, cargando, error } = this.state;
 
-    if (cargando) return <p>Buscando...</p>;
-    if (error) return <p>Error: {error}</p>;
+    if (cargando) return <p>Buscando...</p>;  // aca deberia ir un loader pero falta la clase creo
+    if (error) return <p>Error: {error}</p>; // aca deberia ir un componente de error el d 404? 
 
     return (
       <div className="container">
-        <h1>UdeSA Movies</h1>
-
-        <nav>
-          <ul className="nav nav-tabs my-4">
-            <li className="nav-item"><a className="nav-link" href="/">Home</a></li>
-            <li className="nav-item"><a className="nav-link" href="/movies">Películas</a></li>
-            <li className="nav-item"><a className="nav-link" href="/series">Series</a></li>
-            <li className="nav-item"><a className="nav-link" href="/favorites">Favoritas</a></li>
-          </ul>
-
-          <form className="search-form" action="/results" method="get">
-            <input type="text" name="searchData" placeholder="Buscar..." className="" />
-            <button type="submit" className="btn btn-success btn-sm">Buscar</button>
-          </form>
-        </nav>
-
+        <Header/>
+        <Formulario/>
         <h2 className="alert alert-primary">Resultados de búsqueda</h2>
         <section className="row cards" id="movies">
           {resultados.map(movie => (
@@ -62,6 +53,7 @@ class Results extends Component {
             </article>
           ))}
         </section>
+        <Footer/>
       </div>
     );
   }
