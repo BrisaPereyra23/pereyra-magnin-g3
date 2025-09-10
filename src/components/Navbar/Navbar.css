@@ -1,99 +1,72 @@
+/* Nav general */
+nav.navbar {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr; /* logo | menú | usuario */
+  align-items: center;
+  background-color: #eee;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  padding: 0 1rem;
+}
 
-img.peliculas-image {
-    width: 10%;
+/* Logo */
+.logo a {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #222;
+  text-decoration: none;
 }
-nav {
-    display: grid;
-    grid-template-columns: 1fr;
-    background-color: #eee;
-    border-radius: 4px;
-    margin-bottom: 20px;
+
+/* Menú */
+.nav-menu {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
 }
-.nav {
-    margin: 0 !important;
+
+.nav-menu a {
+  color: #444;
+  text-decoration: none;
 }
-.nav a {
-    color: #444;
-    text-decoration: none;
+
+.nav-menu a:hover {
+  font-weight: bold;
 }
-.nav a:hover {
-    font-weight: bold;
+
+/* Usuario */
+.nav-user {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
-.search-form, .filter-form {
-    padding: .5rem 1rem;
-    display: grid;
-    grid-template-columns: 4fr 1fr;
-    column-gap: 5px;
+
+.nav-user span {
+  font-size: 0.9rem;
 }
-.filter-form {
-    grid-template-columns: 1fr;
+
+.user-img {
+  width: 30px;
+  border-radius: 50%;
+  margin-left: 10px;
 }
-.search-form .btn-sm {
-    line-height: 1;
-    font-size: 0.9rem;
-}
-.search-form input,
-.filter-form input {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding-top: 3px;
-    vertical-align: middle;
-    line-height: 1;
-    font-size: 1rem;
-    padding-bottom: 4px;
-}
-.filter-form input {
-    line-height: 1.5;
-}
-.cards {
-    padding: 0.75rem 1.25rem;
-    display: flex;
+
+/* Responsive */
+@media (max-width: 765px) {
+  nav.navbar {
+    grid-template-columns: 1fr; /* logo arriba, menú y usuario abajo */
+    row-gap: 10px;
+    text-align: center;
+  }
+
+  .nav-menu {
+    justify-content: center;
     flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 2%;
-}
-.cardBody {
-    margin-top: 20px;
-}
-.single-card-people {
-    width: 19%;
-}
-.single-card-movie {
-    width: 24%;
-}
-.single-card-playing {
-    width: 15%;
-}
-#now-playing .card-text {
-    height: 100px;
-    overflow: hidden;
-}
-.single-card-tv {
-    width: 19%;
-}
-.tv-show .card-text {
-    height: 100px;
-    overflow: hidden;
-}
-.single-card-on-air {
-    width: 15%;
-}
-#on-air-today .card-text {
-    height: 100px;
-    overflow: hidden;
-}
-.all-movies .single-card-movie {
-    width: 15%;
-}
-.user img {
-    width: 30px;
-    border-radius: 90%;
-    margin-left: 10px;
-}
+  }
 
-@media(min-width: 765px) {
-    nav {
-        grid-template-columns: 4fr 3fr;
-    }
+  .nav-user {
+    justify-content: center;
+  }
 }

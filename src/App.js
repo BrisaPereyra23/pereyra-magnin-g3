@@ -29,7 +29,7 @@ function App() {
         <Route path="/favorites" exact={true} component={Favorites} />
         <Route path="/detail/id/:id" component={Detail} />
         <Route path="/results/:query" exact={true} component={Results} />
-        <Route path="" component={NotFound} />
+        <Route path="*" component={NotFound} />
       </Switch>
       <Loader/>
       <Card/>
