@@ -1,47 +1,54 @@
-import React from "react"
+import React, { Component } from "react";
 
-function MoviesDetail() {
-    return(
-        <>
-        <h1>UdeSA Movies</h1>
+class MoviesDetail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      movie: null,
+      cargando: true,
+      error: null,
+    };
+  }
 
-        <nav>
-            <ul class="nav nav-tabs my-4">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="movies.html">Películas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="series.html">Series</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="favorites.html">Favoritas</a>
-                </li>
-            </ul>
-            
-            <form class="search-form" action="results.html" method="get">
-                <input type="text" class="" name="searchData" placeholder="Buscar..." value=""/>
-                <button type="submit" class="btn btn-success btn-sm">Buscar</button>
-            </form>
-        </nav>
-
-        <h2 class="alert alert-primary">Superman</h2>
-        <section class="row">
-            <img class="col-md-6" src="https://image.tmdb.org/t/p/w500/ombsmhYUqR4qqOLOxAyr5V8hbyv.jpg" alt=""/>
-            <section class="col-md-6 info">
-                <h3>Descripción</h3>
-                <p class="description">Superman, a journalist in Metropolis, embarks on a journey to reconcile his
-                    Kryptonian heritage with his human upbringing as Clark Kent.</p>
-                <p class="mt-0 mb-0" id="release-date"><strong>Fecha de estreno:</strong> 2025-07-09</p>
-                <p class="mt-0 mb-0 length"><strong>Duración:</strong> 130</p>
-                <p class="mt-0" id="votes"><strong>Puntuación:</strong> 7.534</p>
-            </section>
-        </section>
-
-        </>
+  componentDidMount() {
+    const { id } = this.props.match.params; // React Router v5
+    fetch(
+      `https://api.themoviedb.org/3/movie/${id}?language=es-ES&api_key=eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyODljZWFiM2FjYTZhMmZhZTYzYWEzMTUzZDk1YWI0YiIsIm5iZiI6MTc1NzI1NjE1MC44OTEsInN1YiI6IjY4YmQ5OWQ2YjRiM2JiYjczYjliYzIyNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hn2Sy_eCyWgGOCC7J-_Mo0__KiLW-6hq_rrR54C6gzI`
     )
+      .then((res) => res.json())
+      .then((data) => this.setState({ movie: data, cargando: false }))
+      .catch((err) => this.setState({ err, cargando: false }));
+  }
+
+  render() {
+    const movie = this.state.movie;
+    const cargando = this.state.cargando;
+    const error = this.state.err;
+    const imageUrl = movie.image ? movie.image : '/images/default-movie.png';
+
+
+
+    if (cargando) return <p>Cargando detalle...</p>;
+    if (error) return <p>Error: {err}</p>;
+
+    return (
+      <div className="container">
+        <h2 className="alert alert-primary">{movie.title}</h2>
+        <section className="row">
+          <img
+            className="col-md-6"
+            src={imageUrl} alt={movie.title}
+          />{/*ver si esta bien el src */}
+          {/*chequear esto */}
+        <section className="col-md-6 info">
+            <h3>Información</h3>
+            <p><strong>Nombre en mayúsculas:</strong> {movie.title.toUpperCase()}</p>
+            <p><strong>ID de la película:</strong> {movie.id}</p>
+        </section>
+        </section>
+      </div>
+    );
+  }
 }
 
 export default MoviesDetail;
