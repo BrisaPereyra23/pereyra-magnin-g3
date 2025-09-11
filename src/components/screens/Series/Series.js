@@ -52,7 +52,7 @@ class Series extends Component {
     if (cargando && series.length === 0) 
       return <p>Cargando series...</p>;
     if (error) 
-      return <p>Error: {err}</p>;
+      return <p>Error: {error}</p>;
 
     const seriesFiltradas = series.filter((show) =>
       show.name.toLowerCase().includes(filter.toLowerCase())
