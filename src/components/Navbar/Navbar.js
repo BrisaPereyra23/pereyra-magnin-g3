@@ -18,9 +18,12 @@ function NavBar() {
         ))}
       </ul>
       <div className="nav-user">
-        <img src="./img/user.jpg" className="user-img" alt="usuario" />
+        <img src="./img/user.jpg" className="user-img" alt="usuario"/>
+      <span className="user-name">Pepe Argento</span>
       </div>
+      
     </nav>
+    
   );
 }
 

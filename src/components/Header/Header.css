@@ -1,3 +1,45 @@
 img.peliculas-image {
     width: 10%;
 }
+h1.site-title {
+    text-align: center;
+}
+img.user-img
+ {
+    width: 10%;
+    align-content: center;
+    border-radius: 18%;
+}
+ul.nav-menu {
+    display: flex
+;
+    flex-wrap: nowrap;
+
+    justify-content: space-between;
+}
+.nav-user
+
+ {
+    display: flex
+;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    align-content: center;
+}
+section.header-section
+
+ {
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+}
+::marker
+ {
+    color: transparent;
+}
+a {
+    text-decoration: none;
+    color: black;
+}

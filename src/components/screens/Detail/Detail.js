@@ -34,10 +34,10 @@ class Detail extends Component {
     if (!item) return null;
 
     return (
-      <div className="container">
-        <h1>UdeSA Movies</h1>
+      <div className="">
+         {/*<h1>UdeSA Movies</h1>
 
-        {/* Navbar */}
+         Navbar 
         <nav className="nav">
           <a href="/">Home</a>
           <a href="/favorites">Favorites</a>
@@ -45,7 +45,7 @@ class Detail extends Component {
           <a href="/tv">TV Shows</a>
         </nav>
 
-        {/* Detalle */}
+        {/* Detalle 
         <h2 className="alert alert-primary mt-3">{item.title || item.name}</h2>
 
         <section className="row cards">
@@ -84,10 +84,11 @@ class Detail extends Component {
               {favorito ? "Quitar de Favoritos" : "Agregar a Favoritos"}
             </button>
           </section>
-        </section>
-      </div>
+        </section> */}
+      </div> 
+      
     );
   }
 }
 
-export default Detail;
+export default Detail; 

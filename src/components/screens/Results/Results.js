@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Header from "../../Header/Header";
 import Footer from "../../Footer/Footer";
-import Formulario from "../../Formulario/Formulario";
 import { Link } from "react-router-dom";
 
 
@@ -34,7 +33,6 @@ class Results extends Component {
     return (
       <div className="container">
         <Header/>
-        <Formulario/>
         <h2 className="alert alert-primary">Resultados de búsqueda</h2>
         <section className="row cards" id="movies">
           {resultados.map(movie => (

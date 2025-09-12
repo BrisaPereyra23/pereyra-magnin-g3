@@ -4,7 +4,8 @@ function Favorites() {
     return(
     <>
     <div className="container">
-        <img src="./img/Logo_Peliculas.png" className="peliculas-image" alt="logo" />
+        {/* Navbar 
+      <img src="./img/Logo_Peliculas.png" className="peliculas-image" alt="logo" />
         
         <h2 className="alert alert-primary">Películas favoritas</h2>
         <section className="row cards" id="movies">
@@ -87,9 +88,11 @@ function Favorites() {
             </article>
             
 
-        </section>
-    </div>
+        </section> */}
+    </div> 
 
 </>)
-}
+} 
+
+
 export default Favorites;

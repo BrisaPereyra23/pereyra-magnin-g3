@@ -57,9 +57,8 @@ class Movies extends Component {
 
     return (
       <div className="container">
-        <h1>UdeSA Movies</h1>
-
-        {/* Navbar */}
+       
+        {/* Navbar 
         <nav>
           <ul className="nav nav-tabs my-4">
             <li className="nav-item">
@@ -86,7 +85,7 @@ class Movies extends Component {
 
         <h2 className="alert alert-primary">Todas las películas</h2>
 
-        {/* Filtro */}
+         Filtro 
         <form className="filter-form px-0 mb-3">
           <input
             type="text"

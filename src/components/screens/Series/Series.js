@@ -62,7 +62,7 @@ class Series extends Component {
       <div className="container">
         <h1>Series Populares</h1>
 
-        <form className="filter-form px-0 mb-3">
+       {/* <form className="filter-form px-0 mb-3">
           <input
             type="text"
             name="filter"
@@ -70,7 +70,7 @@ class Series extends Component {
             value={filter}
             onChange={this.manejarFiltro}
           />
-        </form>
+        </form>  Filtro */}
 
         <section className="row cards all-series" id="series">
           {seriesFiltradas.map((show) => (
