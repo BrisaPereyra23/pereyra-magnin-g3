@@ -10,6 +10,7 @@ class Movies extends Component {
       error: null,
       page: 1,
       filter: "",
+      categoriaActual: this.props.match.params.categoria,
     };
   }
 
@@ -17,16 +18,19 @@ class Movies extends Component {
     this.fetchMovies();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const categoriaActual = this.props.match.params.categoria;
-    const paginaActual = this.state.page;
-
-    // Solo llamar fetchMovies si cambió la categoría o la página
-    if (
-      categoriaActual !== prevProps.match.params.categoria ||
-      paginaActual !== prevState.page
-    ) {
-      this.fetchMovies();
+  componentDidUpdate() {
+    if (this.props.match.params.categoria !== this.state.categoriaActual) {
+      this.setState(
+        {
+          movies: [],
+          cargando: true,
+          error: null,
+          page: 1,
+          filter: "",
+          categoriaActual: this.props.match.params.categoria,
+        },
+        () => this.fetchMovies()
+      );
     }
   }
 
@@ -38,47 +42,75 @@ class Movies extends Component {
       "now-playing": "now_playing",
     };
 
-    const Categoria = this.props.match.params.categoria;
-    const categoriaApi = categoryMap[Categoria]; // ⚡ Usar la variable local, no this.categoryMap
+    const categoria = this.props.match.params.categoria;
+    let url = "";
 
-    if (!categoriaApi) {
+    if (categoria !== undefined && categoryMap[categoria] !== undefined) {
+      url =
+        `https://api.themoviedb.org/3/movie/${categoryMap[categoria]}?language=en-US&page=${this.state.page}&api_key=2277889cc1ea5b292e88819d7f7e0ff2`
+    } else if (categoria === undefined) {
+      url =
+        `https://api.themoviedb.org/3/discover/movie?language=en-US&page=${this.state.page}&api_key=2277889cc1ea5b292e88819d7f7e0ff2`
+    } else {
       this.setState({ error: "Categoría no válida", cargando: false });
       return;
     }
 
-    fetch(
-      `https://api.themoviedb.org/3/movie/${categoriaApi}?language=en-US&page=${this.state.page}&api_key=2277889cc1ea5b292e88819d7f7e0ff2`
-    )
+    fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        const resultados = data.results || [];
-        // Si es página 1, reemplaza; si es >1, concatena para "Cargar más"
-        this.setState((prevState) => ({
-          movies:
-            this.state.page === 1
-              ? resultados
-              : [...prevState.movies, ...resultados],
+        const resultados = data && data.results ? data.results : [];
+
+        let nuevas = [];
+        if (this.state.page === 1) {
+          nuevas = resultados;
+        } else {
+          
+          for (let i = 0; i < this.state.movies.length; i++) {
+            nuevas.push(this.state.movies[i]);
+          }
+          
+          for (let j = 0; j < resultados.length; j++) {
+            nuevas.push(resultados[j]);
+          }
+        }
+
+        this.setState({
+          movies: nuevas,
           cargando: false,
-        }));
+        });
       })
       .catch((err) =>
-        this.setState({ error: err.message || "Error al cargar", cargando: false })
+        this.setState({
+          error: err.message ? err.message : "Error al cargar",
+          cargando: false,
+        })
       );
   };
 
   cargarMas = () => {
-    this.setState({ page: this.state.page + 1, cargando: true });
+    this.setState(
+      { page: this.state.page + 1, cargando: true }, () => this.fetchMovies()
+    );
   };
 
-  manejarFiltro = (e) => {
-    this.setState({ filter: e.target.value });
+  manejarFiltro = (event) => {
+    this.setState({ filter: event.target.value });
   };
 
   render() {
-    const { movies, cargando, error, filter } = this.state;
+    const movies = this.state.movies;
+    const cargando = this.state.cargando;
+    const error = this.state.error;
+    const filter = this.state.filter;
 
-    if (cargando && movies.length === 0) return <p>Cargando películas...</p>;
-    if (error) return <p>Error: {error}</p>;
+
+    if (cargando && movies.length === 0) {
+      return <p>Cargando películas...</p>;
+    }
+    if (error) {
+      return <p>Error: {error}</p>;
+    }
 
     const moviesFiltradas = movies.filter((movie) =>
       movie.title.toLowerCase().includes(filter.toLowerCase())
@@ -87,10 +119,12 @@ class Movies extends Component {
     return (
       <div className="container">
         <h2 className="alert alert-primary">
-          Categoría: {this.props.match.params.categoria}
+          {this.props.match.params.categoria !== undefined
+          ? `Categoría: ${this.props.match.params.categoria}`
+          : "Todas las películas"}
         </h2>
 
-        {/* Filtro */}
+        {/* Filtro 
         <form className="filter-form px-0 mb-3">
           <input
             type="text"
@@ -99,7 +133,7 @@ class Movies extends Component {
             value={filter}
             onChange={this.manejarFiltro}
           />
-        </form>
+        </form>*/}
 
         {/* Cards de películas */}
         <section className="row cards all-movies" id="movies">
@@ -114,13 +148,14 @@ class Movies extends Component {
                 }
                 alt={movie.title}
               />
+
               <div className="cardBody">
                 <h5 className="card-title">{movie.title}</h5>
                 <p className="card-text">
                   {movie.overview ? movie.overview : "Sin descripción."}
                 </p>
                 <Link
-                  to={`/detail/movies/${movie.id}`}
+                  to={"/detail/movies/" + movie.id}
                   className="btn btn-primary"
                 >
                   Ver más
@@ -130,7 +165,6 @@ class Movies extends Component {
           ))}
         </section>
 
-        {/* Botón cargar más */}
         {movies.length > 0 && (
           <button className="btn btn-info" onClick={this.cargarMas}>
             Cargar más
