@@ -5,6 +5,8 @@ import React, { Component } from "react";
 import Header from "../../Header/Header";
 import { Link } from "react-router-dom";
 import "./Home.css";
+import NotFound from "../NotFound/NotFound";
+//hacer botones de ver mas y ver menos para no ver las 20 pelicuas
 
 class Home extends Component {
   constructor(props) {
@@ -50,12 +52,12 @@ class Home extends Component {
     if (peli.poster_path) {
       contenidoPoster = (
         <img
-          src={`https://image.tmdb.org/t/p/w500${peli.poster_path}`}
+          src={`https://image.tmdb.org/t/p/w500${peli.poster_path}`} //poster_path es info de la api 
           alt={peli.title}
         />
       );
     } else {
-        contenidoPoster = <div className="no-image">No Image</div>;  // aca va el 404
+        contenidoPoster = <NotFound />
     }
     return contenidoPoster;
   }
