@@ -51,7 +51,6 @@ class Results extends Component {
             </article>
           ))}
         </section>
-        <Footer/>
       </div>
     );
   }
