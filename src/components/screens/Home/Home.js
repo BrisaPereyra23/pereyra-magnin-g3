@@ -23,10 +23,9 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    const apiKey = "2277889cc1ea5b292e88819d7f7e0ff2";
 
     // Popular
-    fetch(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=${apiKey}`)
+    fetch(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=2277889cc1ea5b292e88819d7f7e0ff2`)
       .then(res => res.json())
       .then(data => {
         const results = data.results || [];
@@ -38,7 +37,7 @@ class Home extends Component {
       .catch(err => this.setState({ error: err }));
 
     // Top Rated
-    fetch(`https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&api_key=${apiKey}`)
+    fetch(`https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&api_key=2277889cc1ea5b292e88819d7f7e0ff2`)
       .then(res => res.json())
       .then(data => {
         const results = data.results || [];
@@ -50,7 +49,7 @@ class Home extends Component {
       .catch(err => this.setState({ error: err }));
 
     // Upcoming
-    fetch(`https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1&api_key=${apiKey}`)
+    fetch(`https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1&api_key=2277889cc1ea5b292e88819d7f7e0ff2`)
       .then(res => res.json())
       .then(data => {
         const results = data.results || [];
@@ -62,7 +61,7 @@ class Home extends Component {
       .catch(err => this.setState({ error: err }));
 
     // Now Playing
-    fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&api_key=${apiKey}`)
+    fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&api_key=2277889cc1ea5b292e88819d7f7e0ff2`)
       .then(res => res.json())
       .then(data => {
         const results = data.results || [];

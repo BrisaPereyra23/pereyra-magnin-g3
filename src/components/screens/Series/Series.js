@@ -93,9 +93,7 @@ class Series extends Component {
           ))}
         </section>
 
-        <button className="btn btn-info" onClick={this.cargarMas}>
-          Cargar más
-        </button>
+        <button className="btn btn-info" onClick={this.cargarMas}> Cargar más </button>
       </div>
     );
   }
