@@ -21,25 +21,25 @@ class Home extends Component {
 
   componentDidMount() {
     // Popular
-    fetch(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyODljZWFiM2FjYTZhMmZhZTYzYWEzMTUzZDk1YWI0YiIsIm5iZiI6MTc1NzI1NjE1MC44OTEsInN1YiI6IjY4YmQ5OWQ2YjRiM2JiYjczYjliYzIyNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hn2Sy_eCyWgGOCC7J-_Mo0__KiLW-6hq_rrR54C6gzI`)
+    fetch(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=2277889cc1ea5b292e88819d7f7e0ff2`)
       .then(res => res.json())
       .then(data => this.setState({ popular: data.results }))
       .catch(err => this.setState({ error: err }));
 
     // Top Rated
-    fetch(`https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&api_key=eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyODljZWFiM2FjYTZhMmZhZTYzYWEzMTUzZDk1YWI0YiIsIm5iZiI6MTc1NzI1NjE1MC44OTEsInN1YiI6IjY4YmQ5OWQ2YjRiM2JiYjczYjliYzIyNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hn2Sy_eCyWgGOCC7J-_Mo0__KiLW-6hq_rrR54C6gzI`)
+    fetch(`https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&api_key=2277889cc1ea5b292e88819d7f7e0ff2`)
       .then(res => res.json())
       .then(data => this.setState({ topRated: data.results }))
       .catch(err => this.setState({ error: err }));
 
     // Upcoming
-    fetch(`https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1&api_key=eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyODljZWFiM2FjYTZhMmZhZTYzYWEzMTUzZDk1YWI0YiIsIm5iZiI6MTc1NzI1NjE1MC44OTEsInN1YiI6IjY4YmQ5OWQ2YjRiM2JiYjczYjliYzIyNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hn2Sy_eCyWgGOCC7J-_Mo0__KiLW-6hq_rrR54C6gzI`)
+    fetch(`https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1&api_key=2277889cc1ea5b292e88819d7f7e0ff2`)
       .then(res => res.json())
       .then(data => this.setState({ upcoming: data.results }))
       .catch(err => this.setState({ error: err }));
 
     // Now Playing
-    fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&api_key=eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyODljZWFiM2FjYTZhMmZhZTYzYWEzMTUzZDk1YWI0YiIsIm5iZiI6MTc1NzI1NjE1MC44OTEsInN1YiI6IjY4YmQ5OWQ2YjRiM2JiYjczYjliYzIyNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hn2Sy_eCyWgGOCC7J-_Mo0__KiLW-6hq_rrR54C6gzI`)
+    fetch(`https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&api_key=2277889cc1ea5b292e88819d7f7e0ff2`)
       .then(res => res.json())
       .then(data => this.setState({ nowPlaying: data.results, loading: false }))
       .catch(err => this.setState({ error: err, loading: false }));
