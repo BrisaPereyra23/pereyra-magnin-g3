@@ -30,7 +30,6 @@ function App() {
         <Route path="/results/:query" exact={true} component={Results} />
         <Route path="*" component={NotFound} />
       </Switch>
-      <Loader/>
       <Footer/>
     </div>
     </div>

@@ -17,7 +17,7 @@ class Results extends Component {
   componentDidMount() {
     const query = this.props.match.params.query || "matrix";
 
-    fetch(`https://api.themoviedb.org/3/search/movie?language=en-US&query=${query}&api_key=eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyODljZWFiM2FjYTZhMmZhZTYzYWEzMTUzZDk1YWI0YiIsIm5iZiI6MTc1NzI1NjE1MC44OTEsInN1YiI6IjY4YmQ5OWQ2YjRiM2JiYjczYjliYzIyNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.hn2Sy_eCyWgGOCC7J-_Mo0__KiLW-6hq_rrR54C6gzI `
+    fetch(`https://api.themoviedb.org/3/search/movie?language=en-US&query=${query}&api_key=2277889cc1ea5b292e88819d7f7e0ff2`
 )
       .then(res => res.json())
       .then(data => this.setState({ resultados: data.results, cargando: false }))
