@@ -1,8 +1,0 @@
-/*css provisorio, cambiar*/
-.cards-container {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding-top: 1pc;
-}

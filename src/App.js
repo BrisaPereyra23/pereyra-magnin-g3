@@ -4,8 +4,6 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 //import NavBar from "../src/components/Navbar/Navbar";
 import Loader from "../src/components/Loader/Loader";
-//import Card from "../src/components/Card/Card";
-//import Cards from "../src/components/Cards/Cards";
 import Footer from "../src/components/Footer/Footer";
 //import Header from "../src/components/Header/Header";
 import Detail from "../src/components/screens/Detail/Detail"
@@ -22,7 +20,6 @@ function App() {
     <div className="App">
      
        <div>  
-         <Home/>  
         <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/movies/id/:id" exact={true} component={Movies} />
