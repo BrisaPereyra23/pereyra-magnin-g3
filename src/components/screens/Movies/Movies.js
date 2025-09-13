@@ -101,8 +101,8 @@ class Movies extends Component {
           {moviesFiltradas.map((movie) => (
             <article className="single-card-movie col-md-3 mb-4" key={movie.id}>
               <img
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                className="card-img-top"
+                  className="card-img-top" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+               
                 alt={movie.title}
               />
               <div className="cardBody">

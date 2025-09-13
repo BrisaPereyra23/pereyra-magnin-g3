@@ -1,0 +1,7 @@
+footer.bg-gray-800.text-white.p-4.text-center.mt-8
+ {
+    align-items: center;
+    display: flex; 
+    align-content: center;
+    flex-direction: column;
+}

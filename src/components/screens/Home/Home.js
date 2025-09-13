@@ -52,6 +52,7 @@ class Home extends Component {
     if (peli.poster_path) {
       contenidoPoster = (
         <img
+          className="card-img-top"
           src={`https://image.tmdb.org/t/p/w500${peli.poster_path}`} //poster_path es info de la api 
           alt={peli.title}
         />
