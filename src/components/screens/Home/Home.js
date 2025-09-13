@@ -106,7 +106,7 @@ class Home extends Component {
 
         {this.state.descripcionVisible.includes(peli.id) && <p>{peli.overview}</p>}
         <button onClick={() => this.manejarDescripcion(peli.id)}>Ver descripción</button>
-        <Link to={`/movies/${peli.id}`}>Ir a detalle</Link>
+        <Link to={`/detail/movies/${peli.id}`}>Ir a detalle</Link>
       </div>
     </article>
   ))}
@@ -124,7 +124,7 @@ class Home extends Component {
           <h5>{peli.title}</h5>
             {this.state.descripcionVisible.includes(peli.id) && <p className="card-text">{peli.overview}</p>}
             <button onClick={() => this.manejarDescripcion(peli.id)}>Ver descripción</button>
-            <Link to={`/movies/id/:${peli.id}`}>Ir a detalle</Link>
+            <Link to={`/detail/movies/${peli.id}`}>Ir a detalle</Link>
         </div>
         </article>
         ))}
@@ -142,7 +142,7 @@ class Home extends Component {
                 <h5>{peli.title}</h5>
                 {this.state.descripcionVisible.includes(peli.id) && <p className="card-text">{peli.overview}</p>}
                 <button onClick={() => this.manejarDescripcion(peli.id)}>Ver descripción</button>
-                <Link to={`/movies/id/:${peli.id}`}>Ir a detalle</Link>
+                <Link to={`/detail/movies/${peli.id}`}>Ir a detalle</Link>
               </div>
             </article>
           ))}
@@ -159,7 +159,7 @@ class Home extends Component {
                 <h5>{peli.title}</h5>
                 {this.state.descripcionVisible.includes(peli.id) && <p className="card-text">{peli.overview}</p>}
                 <button onClick={() => this.manejarDescripcion(peli.id)}>Ver descripción</button>
-                <Link to={`/movies/id/:${peli.id}`}>Ir a detalle</Link>
+                <Link to={`/detail/movies/${peli.id}`}>Ir a detalle</Link>
               </div>
             </article>
           ))}

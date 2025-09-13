@@ -22,9 +22,9 @@ function App() {
        <div>  
         <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/movies/id/:id" exact={true} component={MoviesDetail} />
+        <Route path="/detail/movies/:id" exact={true} component={MoviesDetail} />
         <Route path="/series/id/:id" component={SeriesDetail} />
-        <Route path="/movies" component={Movies} /> 
+        <Route path="/movies/:categoria" component={Movies} />
         <Route path="/series" component={Series} /> 
         <Route path="/favorites" exact={true} component={Favorites} />
         <Route path="/results/:query" exact={true} component={Results} />

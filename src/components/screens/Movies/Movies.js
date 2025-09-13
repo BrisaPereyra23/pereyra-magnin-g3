@@ -17,14 +17,25 @@ class Movies extends Component {
     this.fetchMovies();
   }
 
+
+
   fetchMovies = () => {
+    const categoryMap = {
+      popular: "popular",
+      "top-rated": "top-rated",
+      upcoming: "upcoming",
+      "now-playing": "now_playing"
+      };
+    const Categoria = this.props.match.params.categoria 
+    const categoriaApi = this.categoryMap[Categoria]
+
     fetch(
-      `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${this.state.page}&api_key=eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyODljZWFiM2FjYTZhMmZhZTYzYWEzMTUzZDk1YWI0YiIsIm5iZiI6MTc1NzI1NjE1MC44OTEsInN1YiI6IjY4YmQ5OW_`
+      `https://api.themoviedb.org/3/movie/${categoriaApi}?language=en-US&page=${this.state.page}&api_key=2277889cc1ea5b292e88819d7f7e0ff2`
     )
       .then((res) => res.json())
       .then((data) =>
         this.setState({
-          movies: [...this.state.movies, ...data.results],
+          movies: data.results,
           cargando: false
         })
       )
@@ -32,6 +43,10 @@ class Movies extends Component {
         this.setState({ error: err.message, cargando: false })
       );
   };
+
+  componentDidUpdate() {
+    this.fetchMovies();
+  }
 
   cargarMas = () => {
     this.setState(
@@ -45,7 +60,10 @@ class Movies extends Component {
   };
 
   render() {
-    const { movies, cargando, error, filter } = this.state;
+    const movies   = this.state.movies;
+    const cargando = this.state.cargando;
+    const error    = this.state.error;
+    const filter   = this.state.filter;
 
     if (cargando && movies.length === 0) return <p>Cargando películas...</p>;
     if (error) return <p>Error: {error}</p>;
@@ -97,33 +115,32 @@ class Movies extends Component {
         </form>
 
         {/* Cards de películas */}
-        <section className="row cards all-movies" id="movies">
-          {moviesFiltradas.map((movie) => (
-            <article className="single-card-movie col-md-3 mb-4" key={movie.id}>
-              <img
-                  className="card-img-top" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-               
-                alt={movie.title}
-              />
-              <div className="cardBody">
-                <h5 className="card-title">{movie.title}</h5>
-                <p className="card-text">
-                  {movie.overview
-                    ? movie.overview.substring(0, 100) + "..."
-                    : "Sin descripción."}
-                </p>
-                <Link to={`/detail/movie/${movie.id}`} className="btn btn-primary">
-                  Ver más
-                </Link>
-              </div>
-            </article>
-          ))}
-        </section>
+      <h2 className="alert alert-primary">
+        Categoría: {this.props.match.params.categoria}
+      </h2>
 
-        {/* Botón cargar más */}
-        <button className="btn btn-info" onClick={this.cargarMas}>
-          Cargar más
-        </button>
+        {this.state.cargando ? (
+      <p>Cargando películas...</p>) : (<>
+      <section className="row cards all-movies" id="movies">
+        {this.state.movies.map((movie) => (
+          <article className="single-card-movie col-md-3 mb-4" key={movie.id}>
+            <img className="card-img-top" src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                  : "https://via.placeholder.com/500x750?text=Sin+imagen"}
+              alt={movie.title}/>
+            <div className="cardBody">
+              <h5 className="card-title">{movie.title}</h5>
+              <p className="card-text">
+                {movie.overview ? movie.overview : "Sin descripción."}
+              </p>
+              <Link to={`/detail/movies/${movie.id}`} className="btn btn-primary"> Ver más </Link>
+            </div>
+          </article>
+        ))}
+      </section>
+
+      <button className="btn btn-info" onClick={this.cargarMas}> Cargar más </button>
+      </>
+       )}
       </div>
     );
   }
