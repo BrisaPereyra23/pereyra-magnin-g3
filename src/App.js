@@ -12,7 +12,8 @@ import MoviesDetail from "../src/components/screens/MoviesDetail/MoviesDetail"
 import NotFound from "../src/components/screens/NotFound/NotFound"
 import Results from "../src/components/screens/Results/Results"
 import SeriesDetail from "../src/components/screens/SeriesDetail/SeriesDetail"
-
+import Movies from "../src/components/screens/Movies/Movies"
+import Series from "../src/components/screens/Series/Series"
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/movies/id/:id" exact={true} component={MoviesDetail} />
         <Route path="/series/id/:id" component={SeriesDetail} />
+        <Route path="/movies" component={Movies} /> 
+        <Route path="/series" component={Series} /> 
         <Route path="/favorites" exact={true} component={Favorites} />
         <Route path="/results/:query" exact={true} component={Results} />
         <Route path="*" component={NotFound} />
