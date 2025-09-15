@@ -59,6 +59,10 @@ span.user-name {
   font-size: 0.9rem;
 }
 
+ul.nav-menu {
+    font-size: 18px;
+    font-weight: bolder;
+}
 .user-img {
   width: 30px;
   border-radius: 50%;
@@ -82,3 +86,4 @@ span.user-name {
     justify-content: center;
   }
 }
+

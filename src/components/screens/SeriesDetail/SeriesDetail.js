@@ -1,7 +1,10 @@
 //2277889cc1ea5b292e88819d7f7e0ff2
 
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
+import Loader from "../../Loader/Loader";
+import NotFound from "../NotFound/NotFound";
+import "./SeriesDetail.css";
 class SeriesDetail extends Component {
   constructor(props) {
     super(props);
@@ -27,8 +30,8 @@ class SeriesDetail extends Component {
     const cargando = this.state.cargando;
     const error = this.state.error
 
-    if (cargando) return <p>Cargando detalle...</p>;
-    if (error) return <p>Error: {error.message}</p>;
+    if (cargando) return <Loader />;
+    if (error) return <NotFound />;
 
     let imageUrl = "/images/default-movie.png";
     if (serie.poster_path) {
@@ -37,7 +40,7 @@ class SeriesDetail extends Component {
 // no se como hacer el coso de generos
     return (
       <div className="container">
-        <h2>{serie.name}</h2>
+        <h2 className="nombreDetail">{serie.name}</h2>
         <img className="poster-img" src={imageUrl} alt={serie.name} />
 
         <p><strong>Calificación:</strong> {serie.vote_average}</p>

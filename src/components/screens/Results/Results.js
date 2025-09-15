@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Header from "../../Header/Header";
-import Footer from "../../Footer/Footer";
 import { Link } from "react-router-dom";
 import Loader from "../../Loader/Loader";
-
+import NotFound from "../NotFound/NotFound";
 class Results extends Component {
   constructor(props) {
     super(props);
@@ -64,7 +63,7 @@ class Results extends Component {
     const { resultadosMovies, resultadosSeries, cargando, error, tipoBusqueda } = this.state;
 
     if (cargando) return <Loader />;
-    if (error) return <p>Error: {error}</p>;
+    if (error) return <NotFound/> ;
 
     return (
       <div className="container">

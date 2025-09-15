@@ -1,0 +1,77 @@
+.card-text {
+  color: white;
+  font-family: monospace;
+  background-color: #750404;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+p.card-text
+ {
+    font-size: 12px;
+    margin: -4px;
+    display: flex;
+    align-items: flex-end;
+    background-color: white;
+    color: black;
+}
+.btn-ver-mas {
+  font-size: 12px;
+  font-family: monospace;
+  margin: 10px 5px 5px 0;
+  background-color: #000c35;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 8px 12px;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.btn-favorito {
+  font-size: 12px;
+  margin: 5px;
+  background-color: #750404;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+h5 {
+  font-size: 16px;
+  margin: 4px;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    align-items: baseline;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+a.btn-ver-todas, .btn-ver-todas {
+  font-size: 17px;
+  font-weight: bolder;
+  background-color: #000c35;
+  border-radius: 3px;
+  padding: 13px;
+  color: #e3d4d4;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.all-movies .single-card-movie {
+  width: 20%;
+}
+
+p.card-text {
+  font-size: 12px;
+  margin: -4px;
+}

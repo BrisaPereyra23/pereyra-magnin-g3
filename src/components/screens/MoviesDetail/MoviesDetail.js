@@ -1,7 +1,10 @@
 //2277889cc1ea5b292e88819d7f7e0ff2
 
 import React, { Component } from "react";
-
+import { Link } from "react-router-dom";
+import Loader from "../../Loader/Loader";
+import NotFound from "../NotFound/NotFound";
+import "./MovieDetail.css";
 class MoviesDetail extends Component {
   constructor(props) {
     super(props);
@@ -9,7 +12,7 @@ class MoviesDetail extends Component {
       movie: null,
       cargando: true,
       error: null,
-      favorito: false
+      favorito: false, 
     };
   }
 
@@ -27,17 +30,17 @@ class MoviesDetail extends Component {
     const cargando = this.state.cargando;
     const error = this.state.error;
 
-    if (cargando) return <p>Cargando detalle...</p>;
-    if (error) return <p>Error: {error.message}</p>;
+    if (cargando) return <Loader />;
+    if (error) return <NotFound />;
 
     let imageUrl = "/images/default-movie.png";
     if (movie.poster_path) {
       imageUrl = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
     }
-// no se como hacer el coso de generos
+
     return (
       <div className="container">
-        <h2>{movie.title}</h2>
+        <h2 className="nombreDetail">{movie.title}</h2>
         <img className="poster-img" src={imageUrl} alt={movie.title} />
 
         <p><strong>Calificación:</strong> {movie.vote_average}</p>
@@ -47,7 +50,8 @@ class MoviesDetail extends Component {
         <p><strong>Géneros:</strong> {" "}
         {movie.genres.map((g, i) => (
         <span key={g.id}>{g.name}{i < movie.genres.length - 1 ? ", " : ""}</span>
-        ))}</p>
+        ))}</p> 
+        <p><strong>id</strong>{movie.id}</p>
         
       </div>
     );

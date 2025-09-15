@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Loader from "../../Loader/Loader";
+import NotFound from "../NotFound/NotFound";
+import "./Series.css";
 
 class Series extends Component {
   constructor(props) {
@@ -10,11 +13,20 @@ class Series extends Component {
       error: null,
       page: 1,
       filter: "",
+      esFavorito: false,
     };
   }
 
   componentDidMount() {
     this.fetchSeries();
+
+    // Verificamos si esta serie ya está en favoritos
+    let favoritosLocalStorage = localStorage.getItem("favoritosSeries");
+    let favoritosParse = JSON.parse(favoritosLocalStorage);
+
+    if (favoritosParse !== null && this.props.id && favoritosParse.includes(this.props.id)) {
+      this.setState({ esFavorito: true });
+    }
   }
 
   fetchSeries = () => {
@@ -22,35 +34,25 @@ class Series extends Component {
     let url = "";
 
     if (categoria === "popular") {
-      
-      url = `https://api.themoviedb.org/3/tv/popular?language=en-US&page=${this.state.page}&api_key=2277889cc1ea5b292e88819d7f7e0ff2`;
+      url = `https://api.themoviedb.org/3/tv/popular?language=es-ES&page=${this.state.page}&api_key=2277889cc1ea5b292e88819d7f7e0ff2`;
     } else if (categoria === undefined) {
-   
-      url = `https://api.themoviedb.org/3/tv/popular?language=en-US&page=${this.state.page}&api_key=2277889cc1ea5b292e88819d7f7e0ff2`;
+      url = `https://api.themoviedb.org/3/tv/popular?language=es-ES&page=${this.state.page}&api_key=2277889cc1ea5b292e88819d7f7e0ff2`;
     } else {
-    
-      this.props.history.push("/NotFound"); //fijarse si esta bien o va con link
+      this.props.history.push("/NotFound");
       return;
     }
 
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        let resultados = [];
-        if (data && data.results) {
-          resultados = data.results;
-        }
-
+        let resultados = data && data.results ? data.results : [];
         let nuevas = [];
+
         if (this.state.page === 1) {
           nuevas = resultados;
         } else {
-          for (let i = 0; i < this.state.series.length; i++) {
-            nuevas.push(this.state.series[i]);
-          }
-          for (let j = 0; j < resultados.length; j++) {
-            nuevas.push(resultados[j]);
-          }
+          this.state.series.map(serie => nuevas.push(serie));
+          resultados.map(serie => nuevas.push(serie));
         }
 
         this.setState({
@@ -75,41 +77,59 @@ class Series extends Component {
     this.setState({ filter: event.target.value });
   };
 
+  // 🔹 Funciones de favoritos
+  agregarAFavoritos = (id) => {
+    let favoritosStorage = localStorage.getItem("favoritosSeries");
+    let favoritosParse = JSON.parse(favoritosStorage);
+    if (favoritosParse !== null) {
+      if (!favoritosParse.includes(id)) {
+        favoritosParse.push(id);
+      }
+      localStorage.setItem("favoritosSeries", JSON.stringify(favoritosParse));
+    } else {
+      let favoritos = [];
+      favoritos.push(id);
+      localStorage.setItem("favoritosSeries", JSON.stringify(favoritos));
+    }
+    this.setState({ esFavorito: true });
+  }
+
+  quitarDeFavoritos = (id) => {
+    let favoritosStorage = localStorage.getItem("favoritosSeries");
+    let favoritosParse = JSON.parse(favoritosStorage);
+    if (favoritosParse !== null) {
+      favoritosParse = favoritosParse.filter(favId => favId !== id);
+      localStorage.setItem("favoritosSeries", JSON.stringify(favoritosParse));
+    }
+    this.setState({ esFavorito: false });
+  }
+
   render() {
-    const series = this.state.series;
-    const cargando = this.state.cargando;
-    const error = this.state.error;
-    const filter = this.state.filter;
+    const { series, cargando, error, filter } = this.state;
 
     if (cargando && series.length === 0) {
-      return <p>Cargando series...</p>;
+      return <Loader />;
     }
     if (error) {
-      return <p>Error: {error.message ? error.message : "Error al cargar"}</p>;
+      return <NotFound />;
     }
 
-    const seriesFiltradas = series.filter(function (serie) {
-  if (filter === "") {
-    return true; // si no hay filtro, muestro todas
-  }
-  if (serie.name) {
-    let titulo = serie.name.toLowerCase();
-    let buscado = filter.toLowerCase();
-
-    for (let i = 0; i <= titulo.length - buscado.length; i++) {
-      let iguales = true;
-      for (let j = 0; j < buscado.length; j++) {
-        if (titulo[i + j] !== buscado[j]) {
-          iguales = false;
+    const seriesFiltradas = series.filter((serie) => {
+      if (filter === "") return true;
+      if (serie.name) {
+        let titulo = serie.name.toLowerCase();
+        let buscado = filter.toLowerCase();
+        for (let i = 0; i <= titulo.length - buscado.length; i++) {
+          let iguales = true;
+          for (let j = 0; j < buscado.length; j++) {
+            if (titulo[i + j] !== buscado[j]) iguales = false;
+          }
+          if (iguales) return true;
         }
       }
-      if (iguales) {
-        return true;
-      }
-    }
-  }
-  return false;
-});
+      return false;
+    });
+
     return (
       <div className="container">
         <h2 className="alert alert-primary">
@@ -120,7 +140,7 @@ class Series extends Component {
 
         <section className="row cards all-series" id="series">
           {seriesFiltradas.map((serie) => (
-            <article className="single-card-serie col-md-3 mb-4" key={serie.id}>
+            <article className="single-card-series col-md-3 mb-4" key={serie.id}>
               <img
                 className="card-img-top"
                 src={
@@ -128,26 +148,33 @@ class Series extends Component {
                     ? "https://image.tmdb.org/t/p/w500" + serie.poster_path
                     : "https://via.placeholder.com/500x750?text=Sin+imagen"
                 }
-                alt={serie.title}
+                alt={serie.name}
               />
-              <div className="cardBody">
-                <h5 className="card-title">{serie.title}</h5>
+              <div className="card-body">
+                <h5 className="card-title">{serie.name}</h5>
                 <p className="card-text">
                   {serie.overview ? serie.overview : "Sin descripción."}
                 </p>
                 <Link
                   to={"/detail/series/" + serie.id}
-                  className="btn btn-primary"
+                  className="btn-ver-mas"
                 >
                   Ver más
                 </Link>
+
+                {/* 🔹 Botones favoritos */}
+                {this.state.esFavorito 
+                  ? <button className="btn-favorito" onClick={() => this.quitarDeFavoritos(serie.id)}>Sacar de Favoritos</button> 
+                  : <button className="btn-favorito" onClick={() => this.agregarAFavoritos(serie.id)}>Agregar a favoritos</button>
+                }
+
               </div>
             </article>
           ))}
         </section>
 
         {series.length > 0 && (
-          <button className="btn btn-info" onClick={this.cargarMas}>
+          <button className="btn-ver-todas" onClick={this.cargarMas}>
             Cargar más
           </button>
         )}
