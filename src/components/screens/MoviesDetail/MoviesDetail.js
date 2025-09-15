@@ -23,7 +23,9 @@ class MoviesDetail extends Component {
       .catch((err) => this.setState({ error: err, cargando: false }));
   }
   render() {
-    const { movie, cargando, error,} = this.state;
+    const movie = this.state.movie;
+    const cargando = this.state.cargando;
+    const error = this.state.error;
 
     if (cargando) return <p>Cargando detalle...</p>;
     if (error) return <p>Error: {error.message}</p>;

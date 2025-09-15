@@ -106,6 +106,26 @@ class Home extends Component {
           ))}
         </section>
         <Link to="/movies/popular" className="btn-ver-todas">Ver todas</Link>
+
+        <h2 className="section-title">Popular Seriies</h2>
+        <section className="cards">
+          {this.state.resultFilter?.map(item => (
+            <article key={item.id} className="single-card-movie">
+              {this.renderPoster(peli)}
+              <div className="cardBody">
+                <h5>{item.title}</h5>
+                {this.state.descripcionVisible.filter(item => item === item.id).length > 0 && (
+                  <p className="card-text">{peli.overview}</p>
+                )}
+                <button onClick={() => this.manejarDescripcion(item.id)}>
+                  Ver descripción
+                </button>
+                <Link to={`/detail/series/${item.id}`}>Ir a detalle</Link>
+              </div>
+            </article>
+          ))}
+        </section>
+        <Link to="/series/popular" className="btn-ver-todas">Ver todas</Link>
       </div>
     );
   }
