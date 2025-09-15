@@ -1,5 +1,4 @@
 //2277889cc1ea5b292e88819d7f7e0ff2
-
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Loader from "../../Loader/Loader";
@@ -26,36 +25,46 @@ class MoviesDetail extends Component {
       .catch((err) => this.setState({ error: err, cargando: false }));
   }
   render() {
-    const movie = this.state.movie;
-    const cargando = this.state.cargando;
-    const error = this.state.error;
+  const { movie, cargando, error } = this.state;
 
-    if (cargando) return <Loader />;
-    if (error) return <NotFound />;
+  if (cargando) return <Loader />;
+  if (error) return <NotFound />;
+  
 
-    let imageUrl = "/images/default-movie.png";
-    if (movie.poster_path) {
-      imageUrl = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
-    }
-
-    return (
-      <div className="container">
-        <h2 className="nombreDetail">{movie.title}</h2>
-        <img className="poster-img" src={imageUrl} alt={movie.title} />
-
-        <p><strong>Calificación:</strong> {movie.vote_average}</p>
-        <p><strong>Fecha de estreno:</strong> {movie.release_date}</p>
-        <p><strong>Duración:</strong> {movie.runtime} min</p>
-        <p><strong>Sinópsis:</strong> {movie.overview}</p>
-        <p><strong>Géneros:</strong> {" "}
-        {movie.genres.map((g, i) => (
-        <span key={g.id}>{g.name}{i < movie.genres.length - 1 ? ", " : ""}</span>
-        ))}</p> 
-        <p><strong>id</strong>{movie.id}</p>
-        
-      </div>
-    );
+  let imageUrl = "/images/default-movie.png";
+  if (movie.poster_path) {
+    imageUrl = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
   }
+
+  return (
+    <div className="container">
+      <h2 className="nombreDetail">{movie.title}</h2>
+      <img className="poster-img" src={imageUrl} alt={movie.title} />
+
+      <p><strong>Calificación:</strong> {movie.vote_average}</p>
+      <p><strong>Fecha de estreno:</strong> {movie.release_date}</p>
+      <p><strong>Duración:</strong> {movie.runtime} min</p>
+      <p><strong>Sinópsis:</strong> {movie.overview}</p>
+      
+      {movie.genres && (
+        <p>
+          <strong>Géneros:</strong>{" "}
+          {movie.genres.map((g, i) => (
+            <span key={g.id}>
+              {g.name}
+              {i < movie.genres.length - 1 ? ", " : ""}
+            </span>
+          ))}
+        </p>
+      )}
+
+      <p><strong>ID:</strong> {movie.id}</p>
+    </div>
+  );
+}
+
+    
+  
 }
 
 export default MoviesDetail;

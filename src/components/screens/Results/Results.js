@@ -3,6 +3,7 @@ import Header from "../../Header/Header";
 import { Link } from "react-router-dom";
 import Loader from "../../Loader/Loader";
 import NotFound from "../NotFound/NotFound";
+
 class Results extends Component {
   constructor(props) {
     super(props);

@@ -108,7 +108,7 @@ class Series extends Component {
     const { series, cargando, error, filter } = this.state;
 
     if (cargando && series.length === 0) {
-      return <Loader />;
+      return <Loader/>;
     }
     if (error) {
       return <NotFound />;
