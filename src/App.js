@@ -3,7 +3,7 @@ import './App.css';
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 //import NavBar from "../src/components/Navbar/Navbar";
-import Loader from "../src/components/Loader/Loader";
+//import Loader from "../src/components/Loader/Loader";
 import Footer from "../src/components/Footer/Footer";
 //import Header from "../src/components/Header/Header";
 import Favorites from "../src/components/screens/Favorites/Favorites"
