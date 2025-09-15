@@ -84,10 +84,10 @@ class Home extends Component {
     let visible;
 
     if (this.state.descripcionVisible.filter(item => item === id).length > 0) {
-      // Si ya está, lo saco
+      
       visible = this.state.descripcionVisible.filter(item => item !== id);
     } else {
-      // Si no está, lo agrego
+      
       visible = this.state.descripcionVisible.concat(id);
     }
 

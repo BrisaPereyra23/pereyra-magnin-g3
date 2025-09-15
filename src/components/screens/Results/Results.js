@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from "../../Header/Header";
 import Footer from "../../Footer/Footer";
 import { Link } from "react-router-dom";
+import Loader from "../../Loader/Loader";
 
 class Results extends Component {
   constructor(props) {
@@ -11,12 +12,15 @@ class Results extends Component {
       resultadosSeries: [],
       cargando: true,
       error: null,
+      tipoBusqueda: this.props.match.params.query,
     };
   }
 
   componentDidMount() {
     const queryParam = this.props.match.params.query;
     const query = queryParam !== undefined && queryParam !== "" ? queryParam : "matrix";
+
+    this.setState({ cargando: true });
 
     // Buscar películas
     fetch(`https://api.themoviedb.org/3/search/movie?language=en-US&query=${query}&api_key=2277889cc1ea5b292e88819d7f7e0ff2`)
@@ -57,31 +61,31 @@ class Results extends Component {
   }
 
   render() {
-    const resultadosMovies = this.state.resultadosMovies;
-    const resultadosSeries = this.state.resultadosSeries;
-    const cargando = this.state.cargando;
-    const error = this.state.error;
+    const { resultadosMovies, resultadosSeries, cargando, error, tipoBusqueda } = this.state;
 
-
-    if (cargando) return <p>Buscando...</p>;
+    if (cargando) return <Loader />;
     if (error) return <p>Error: {error}</p>;
 
     return (
       <div className="container">
         <Header/>
-        <h2 className="alert alert-primary">Resultados de búsqueda - Movies</h2>
+        <h2 className="alert alert-secondary">Búsqueda de: {tipoBusqueda}</h2>
+
+        <h3 className="alert alert-primary">Resultados - Movies</h3>
         <section className="row cards" id="movies">
           {resultadosMovies.map(movie => this.renderCard(movie, "movie"))}
         </section>
 
-        <h2 className="alert alert-primary">Resultados de búsqueda - Series</h2>
+        <h3 className="alert alert-primary">Resultados - Series</h3>
         <section className="row cards" id="series">
           {resultadosSeries.map(serie => this.renderCard(serie, "series"))}
         </section>
-        <Footer/>
+
+        
       </div>
     );
   }
 }
 
 export default Results;
+//2277889cc1ea5b292e88819d7f7e0ff2
