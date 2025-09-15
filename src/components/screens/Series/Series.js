@@ -89,11 +89,27 @@ class Series extends Component {
     }
 
     const seriesFiltradas = series.filter(function (serie) {
-      return series.name
-        .toLowerCase()
-        .includes(filter.toLowerCase());
-    });
+  if (filter === "") {
+    return true; // si no hay filtro, muestro todas
+  }
+  if (serie.name) {
+    let titulo = serie.name.toLowerCase();
+    let buscado = filter.toLowerCase();
 
+    for (let i = 0; i <= titulo.length - buscado.length; i++) {
+      let iguales = true;
+      for (let j = 0; j < buscado.length; j++) {
+        if (titulo[i + j] !== buscado[j]) {
+          iguales = false;
+        }
+      }
+      if (iguales) {
+        return true;
+      }
+    }
+  }
+  return false;
+});
     return (
       <div className="container">
         <h2 className="alert alert-primary">

@@ -23,7 +23,13 @@ class Home extends Component {
     fetch(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=2277889cc1ea5b292e88819d7f7e0ff2`)
       .then(res => res.json())
       .then(data => {
-        const results = data.results || [];
+        let results;
+        if (data.results === undefined) {
+          results = [];
+        } else {
+          results = data.results;
+        }
+
         this.setState({ 
           popular: results, 
           resultFilter: results.filter((item, index) => index < 4) 
@@ -35,7 +41,13 @@ class Home extends Component {
     fetch(`https://api.themoviedb.org/3/tv/popular?language=en-US&page=1&api_key=2277889cc1ea5b292e88819d7f7e0ff2`)
       .then(res => res.json())
       .then(data => {
-        const results = data.results || [];
+        let results;
+        if (data.results === undefined) {
+          results = [];
+        } else {
+          results = data.results;
+        }
+
         this.setState({ 
           series: results, 
           resultFilter4: results.filter((item, index) => index < 4), 
@@ -47,11 +59,20 @@ class Home extends Component {
 
   renderPoster(item) {
     if (item.poster_path) {
+      let altText;
+      if (item.title !== undefined) {
+        altText = item.title;
+      } else if (item.name !== undefined) {
+        altText = item.name;
+      } else {
+        altText = "sin titulo";
+      }
+
       return (
         <img
           className="card-img-top"
           src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-          alt={item.title ? item.title: item.name ? item.name : "sin titulo"} // si no tiene titulo que el titulo sea el nombre y sino que diga sin titulo
+          alt={altText}
         />
       );
     } else {
@@ -60,15 +81,14 @@ class Home extends Component {
   }
 
   manejarDescripcion(id) {
-    let visible = [];
+    let visible;
 
-    // saco el id si ya estaba
     if (this.state.descripcionVisible.filter(item => item === id).length > 0) {
+      // Si ya está, lo saco
       visible = this.state.descripcionVisible.filter(item => item !== id);
-    } 
-    // si no estaba, lo agrego
-    else {
-      visible = [...this.state.descripcionVisible, id];
+    } else {
+      // Si no está, lo agrego
+      visible = this.state.descripcionVisible.concat(id);
     }
 
     this.setState({ descripcionVisible: visible });
@@ -89,7 +109,7 @@ class Home extends Component {
 
         <h2 className="section-title">Popular Movies</h2>
         <section className="cards">
-          {this.state.resultFilter?.map(peli => (
+          {this.state.resultFilter.map(peli => (
             <article key={peli.id} className="single-card-movie">
               {this.renderPoster(peli)}
               <div className="cardBody">
@@ -107,20 +127,20 @@ class Home extends Component {
         </section>
         <Link to="/movies/popular" className="btn-ver-todas">Ver todas</Link>
 
-        <h2 className="section-title">Popular Seriies</h2>
-        <section className="cards">
-          {this.state.resultFilter?.map(item => (
-            <article key={item.id} className="single-card-movie">
-              {this.renderPoster(peli)}
+        <h2 className="section-title">Popular Series</h2>
+        <section className="cards"> 
+          {this.state.resultFilter4.map(serie => (
+            <article key={serie.id} className="single-card-movie">
+              {this.renderPoster(serie)} 
               <div className="cardBody">
-                <h5>{item.title}</h5>
-                {this.state.descripcionVisible.filter(item => item === item.id).length > 0 && (
-                  <p className="card-text">{peli.overview}</p>
+                <h5>{serie.name}</h5>
+                {this.state.descripcionVisible.filter(item => item === serie.id).length > 0 && (
+                  <p className="card-text">{serie.overview}</p>
                 )}
-                <button onClick={() => this.manejarDescripcion(item.id)}>
+                <button onClick={() => this.manejarDescripcion(serie.id)}>
                   Ver descripción
                 </button>
-                <Link to={`/detail/series/${item.id}`}>Ir a detalle</Link>
+                <Link to={`/detail/series/${serie.id}`}>Ir a detalle</Link>
               </div>
             </article>
           ))}
@@ -132,6 +152,3 @@ class Home extends Component {
 }
 
 export default Home;
-
-
- 

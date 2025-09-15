@@ -101,7 +101,6 @@ class Movies extends Component {
       for (let j = 0; j < buscado.length; j++) {
         if (titulo[i + j] !== buscado[j]) {
           iguales = false;
-          break;
         }
       }
       if (iguales) {

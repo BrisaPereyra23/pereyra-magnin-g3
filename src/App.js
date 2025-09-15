@@ -21,15 +21,15 @@ function App() {
      
        <div>  
         <Switch>
-        <Route exact path="/" exact={true} component={Home} />
-        <Route path="/detail/movies/:id"  component={MoviesDetail} />
+        <Route path="/" exact={true} component={Home} />
+        <Route path="/detail/movies/:id"  component={MoviesDetail} /> {/*hay que hacer un detail*/}
         <Route path="/detail/series/:id"  component={SeriesDetail} />
         <Route path="/movies"  component={Movies} />
-        <Route path="/movies/:categoria" component={Movies} />
+        <Route path="/movies/popular" component={Movies} />
         <Route path="/series" component={Series} /> 
-         <Route path="/series/:categoria" component={Series} />
-        <Route path="/favorites"  component={Favorites} />
-        <Route path="/results/:query"  component={Results} />
+         <Route path="/series/popular" component={Series} />
+        <Route path="/favorites" component={Favorites} />
+        <Route path="/results/:query" component={Results} />
         <Route path="*" component={NotFound} />
       </Switch>
       <Footer/>
