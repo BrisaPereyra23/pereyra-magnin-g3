@@ -44,10 +44,10 @@ class MoviesDetail extends Component {
         <p><strong>Fecha de estreno:</strong> {movie.release_date}</p>
         <p><strong>Duración:</strong> {movie.runtime} min</p>
         <p><strong>Sinópsis:</strong> {movie.overview}</p>
-        <p><strong>Géneros:</strong>
-        
-        </p>
-        
+        <p><strong>Géneros:</strong> {" "}
+        {movie.genres.map((g, i) => (
+        <span key={g.id}>{g.name}{i < movie.genres.length - 1 ? ", " : ""}</span>
+        ))}</p>
         
       </div>
     );
