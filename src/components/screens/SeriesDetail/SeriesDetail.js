@@ -42,7 +42,6 @@ class SeriesDetail extends Component {
 
         <p><strong>Calificación:</strong> {serie.vote_average}</p>
         <p><strong>Fecha de estreno:</strong> {serie.release_date}</p>
-        <p><strong>Duración:</strong> {serie.runtime} min</p>
         <p><strong>Sinópsis:</strong> {serie.overview}</p>
         <p><strong>Géneros:</strong> {" "}
         {serie.genres.map((g, i) => (
