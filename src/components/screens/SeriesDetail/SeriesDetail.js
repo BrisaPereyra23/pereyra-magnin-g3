@@ -25,7 +25,7 @@ class SeriesDetail extends Component {
   render() {
     const serie = this.state.serie;
     const cargando = this.state.cargando;
-    const error = this.state.erroe
+    const error = this.state.error
 
     if (cargando) return <p>Cargando detalle...</p>;
     if (error) return <p>Error: {error.message}</p>;
@@ -48,6 +48,7 @@ class SeriesDetail extends Component {
         <span key={g.id}>{g.name}{i < serie.genres.length - 1 ? ", " : ""}</span>
         ))}</p>
         
+
       </div>
     );
   }
