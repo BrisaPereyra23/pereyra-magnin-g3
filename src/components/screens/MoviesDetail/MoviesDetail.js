@@ -22,12 +22,6 @@ class MoviesDetail extends Component {
       .then((data) => this.setState({ movie: data, cargando: false }))
       .catch((err) => this.setState({ error: err, cargando: false }));
   }
-
-  //toggleFavorito = () => {
-    //this.setState({ favorito: !this.state.favorito });
-  //}; a cheq
-
- //favorito en el render 
   render() {
     const { movie, cargando, error,} = this.state;
 
@@ -57,7 +51,5 @@ class MoviesDetail extends Component {
     );
   }
 }
-//<button onClick={this.toggleFavorito}>
-          //{favorito ? "Quitar de Favoritos" : "Agregar a Favoritos"}
-        //</button>}
+
 export default MoviesDetail;
