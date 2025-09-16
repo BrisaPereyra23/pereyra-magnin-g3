@@ -45,10 +45,15 @@ class Favorites extends Component {
                   key={fav.id}
                   className="single-card-movie col-md-3 mb-4"
                 >
-                  <img
-                    src={`https://image.tmdb.org/t/p/w200${fav.poster_path}`}
-                    alt={fav.title ? fav.title : fav.name}
-                  />
+                <img
+                    src={
+                        fav.poster_path
+                         ? "https://image.tmdb.org/t/p/w500" + fav.poster_path
+                         : "https://via.placeholder.com/500x750?text=Sin+imagen"
+                        }
+                        alt={fav.title ? fav.title : fav.name}
+                        />
+
                   <h3>{fav.title ? fav.title : fav.name}</h3>
                   <p>{fav.type === "movie" ? "Película" : "Serie"}</p>
 

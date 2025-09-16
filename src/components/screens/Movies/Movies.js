@@ -47,8 +47,12 @@ class Movies extends Component {
         if (this.state.page === 1) {
           nuevas = resultados;
         } else {
-          this.state.movies.forEach(peli => nuevas.push(peli));
-          resultados.forEach(peli => nuevas.push(peli));
+          this.state.movies.map(function (peli) {
+            nuevas.push(peli);
+          });
+          resultados.map(function (peli) {
+            nuevas.push(peli);
+          });
         }
 
         this.setState({
@@ -61,15 +65,18 @@ class Movies extends Component {
         this.setState({ error, cargando: false });
       });
   };
+
   cargarMas = () => {
     this.setState(
       { page: this.state.page + 1, cargando: true },
       () => this.fetchMovies()
     );
   };
+
   manejarFiltro = (event) => {
     this.setState({ filter: event.target.value });
   };
+
   agregarAFavoritos = (movie) => {
     let favs = localStorage.getItem("favorites");
     let favoritos = favs ? JSON.parse(favs) : [];
@@ -88,6 +95,7 @@ class Movies extends Component {
       this.setState({ favoritos });
     }
   };
+
   quitarDeFavoritos = (movieId) => {
     let favs = localStorage.getItem("favorites");
     let favoritos = favs ? JSON.parse(favs) : [];
@@ -96,6 +104,7 @@ class Movies extends Component {
     localStorage.setItem("favorites", JSON.stringify(favoritos));
     this.setState({ favoritos });
   };
+
   render() {
     const { movies, cargando, error, filter, favoritos } = this.state;
 
@@ -111,13 +120,26 @@ class Movies extends Component {
       if (movie.title) {
         let titulo = movie.title.toLowerCase();
         let buscado = filter.toLowerCase();
-        for (let i = 0; i <= titulo.length - buscado.length; i++) {
-          let iguales = true;
-          for (let j = 0; j < buscado.length; j++) {
-            if (titulo[i + j] !== buscado[j]) iguales = false;
+
+        let coincide = false;
+
+        Array.from(titulo).map((_, i) => {
+          if (i <= titulo.length - buscado.length) {
+            let iguales = true;
+
+            Array.from(buscado).map((_, j) => {
+              if (titulo[i + j] !== buscado[j]) {
+                iguales = false;
+              }
+            });
+
+            if (iguales) {
+              coincide = true;
+            }
           }
-          if (iguales) return true;
-        }
+        });
+
+        if (coincide) return true;
       }
       return false;
     });
@@ -133,7 +155,6 @@ class Movies extends Component {
         <section className="row cards all-movies" id="movies">
           {moviesFiltradas.map((movie) => {
             const esFavorito = favoritos.find(f => f.id === movie.id && f.type === "movie");
-
             return (
               <article className="single-card-movie col-md-3 mb-4" key={movie.id}>
                 <img

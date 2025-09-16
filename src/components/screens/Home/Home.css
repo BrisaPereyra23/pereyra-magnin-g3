@@ -55,6 +55,7 @@ button {
   background-color: #750404;
   color: #fff;
   border: none;
+  font-family: monospace;
   border-radius: 3px;
   padding: 8px 12px;
   cursor: pointer;
