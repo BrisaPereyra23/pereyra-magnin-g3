@@ -30,9 +30,9 @@ class Movies extends Component {
     let url = "";
 
     if (categoria === "popular") {
-      url = `https://api.themoviedb.org/3/movie/popular?language=es-ES&page=${this.state.page}&api_key=2277889cc1ea5b292e88819d7f7e0ff2`;
+      url = `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${this.state.page}&api_key=2277889cc1ea5b292e88819d7f7e0ff2`;
     } else if (categoria === undefined) {
-      url = `https://api.themoviedb.org/3/movie/popular?language=es-ES&page=${this.state.page}&api_key=2277889cc1ea5b292e88819d7f7e0ff2`;
+      url = `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${this.state.page}&api_key=2277889cc1ea5b292e88819d7f7e0ff2`;
     } else {
       this.props.history.push("/NotFound");
       return;
@@ -158,14 +158,15 @@ class Movies extends Component {
             return (
               <article className="single-card-movie col-md-3 mb-4" key={movie.id}>
                 <img
-                  className="card-img-top"
-                  src={
-                    movie.poster_path
-                      ? "https://image.tmdb.org/t/p/w500" + movie.poster_path
-                      : "https://via.placeholder.com/500x750?text=Sin+imagen"
-                  }
-                  alt={movie.title}
-                />
+            className="card-img-top"
+            src={
+            movie.poster_path
+             ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+              : "https://via.placeholder.com/500x750?text=Sin+imagen"
+                }
+                alt={movie.title ? movie.title : "Sin título"}
+              />
+
                 <div className="card-body">
                   <h5 className="card-title">{movie.title}</h5>
                   <p className="card-text">
