@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import NotFound from "../NotFound/NotFound";
 import Loader from "../../Loader/Loader";
-import "./Movies.css"; // asegurate que el CSS esté en la misma carpeta o ajustá la ruta
+import NotFound from "../NotFound/NotFound";
+import "./Movies.css";
 
 class Movies extends Component {
   constructor(props) {
@@ -12,33 +12,44 @@ class Movies extends Component {
       cargando: true,
       error: null,
       page: 1,
-      filter: ""
+      filter: "",
+      favoritos: [], //ids 
     };
   }
 
   componentDidMount() {
     this.fetchMovies();
+    let favs = localStorage.getItem("favorites");
+    if (favs !== null) {
+      this.setState({ favoritos: JSON.parse(favs) });
+    }
   }
 
   fetchMovies = () => {
     const { categoria } = this.props.match.params;
     let url = "";
 
-    if (categoria === "popular" || categoria === undefined) {
-      url = `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${this.state.page}&api_key=2277889cc1ea5b292e88819d7f7e0ff2`;
+    if (categoria === "popular") {
+      url = `https://api.themoviedb.org/3/movie/popular?language=es-ES&page=${this.state.page}&api_key=2277889cc1ea5b292e88819d7f7e0ff2`;
+    } else if (categoria === undefined) {
+      url = `https://api.themoviedb.org/3/movie/popular?language=es-ES&page=${this.state.page}&api_key=2277889cc1ea5b292e88819d7f7e0ff2`;
     } else {
       this.props.history.push("/NotFound");
       return;
     }
 
     fetch(url)
-      .then((res) => {
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((data) => {
-        const resultados = data && data.results ? data.results : [];
-        const nuevas = this.state.page === 1 ? resultados : [...this.state.movies, ...resultados];
+        let resultados = data && data.results ? data.results : [];
+        let nuevas = [];
+
+        if (this.state.page === 1) {
+          nuevas = resultados;
+        } else {
+          this.state.movies.forEach(peli => nuevas.push(peli));
+          resultados.forEach(peli => nuevas.push(peli));
+        }
 
         this.setState({
           movies: nuevas,
@@ -50,49 +61,66 @@ class Movies extends Component {
         this.setState({ error, cargando: false });
       });
   };
-
   cargarMas = () => {
     this.setState(
-      (prev) => ({ page: prev.page + 1, cargando: true }),
+      { page: this.state.page + 1, cargando: true },
       () => this.fetchMovies()
     );
   };
-
   manejarFiltro = (event) => {
     this.setState({ filter: event.target.value });
   };
+  agregarAFavoritos = (movie) => {
+    let favs = localStorage.getItem("favorites");
+    let favoritos = favs ? JSON.parse(favs) : [];
 
-  agregarAFavoritos = (id) => {
-    const favoritosStorage = localStorage.getItem("favoritos");
-    const favoritos = favoritosStorage ? JSON.parse(favoritosStorage) : [];
-    if (!favoritos.includes(id)) favoritos.push(id);
-    localStorage.setItem("favoritos", JSON.stringify(favoritos));
-    this.forceUpdate(); // para re-renderizar y ver el cambio
+    let existe = favoritos.find(f => f.id === movie.id && f.type === "movie");
+    if (!existe) {
+      favoritos.push({
+        id: movie.id,
+        title: movie.title,
+        name: movie.name,
+        overview: movie.overview,
+        poster_path: movie.poster_path,
+        type: "movie",
+      });
+      localStorage.setItem("favorites", JSON.stringify(favoritos));
+      this.setState({ favoritos });
+    }
   };
+  quitarDeFavoritos = (movieId) => {
+    let favs = localStorage.getItem("favorites");
+    let favoritos = favs ? JSON.parse(favs) : [];
 
-  quitarDeFavoritos = (id) => {
-    const favoritosStorage = localStorage.getItem("favoritos");
-    const favoritos = favoritosStorage ? JSON.parse(favoritosStorage) : [];
-    const nuevos = favoritos.filter((favId) => favId !== id);
-    localStorage.setItem("favoritos", JSON.stringify(nuevos));
-    this.forceUpdate();
+    favoritos = favoritos.filter(f => !(f.id === movieId && f.type === "movie"));
+    localStorage.setItem("favorites", JSON.stringify(favoritos));
+    this.setState({ favoritos });
   };
-
   render() {
-    const { movies, cargando, error, filter } = this.state;
+    const { movies, cargando, error, filter, favoritos } = this.state;
 
-    if (cargando && movies.length === 0) return <Loader />;
-    if (error) return <NotFound />;
+    if (cargando && movies.length === 0) {
+      return <Loader />;
+    }
+    if (error) {
+      return <NotFound />;
+    }
 
     const moviesFiltradas = movies.filter((movie) => {
-      if (!filter) return true;
-      if (!movie.title) return false;
-      return movie.title.toLowerCase().includes(filter.toLowerCase());
+      if (filter === "") return true;
+      if (movie.title) {
+        let titulo = movie.title.toLowerCase();
+        let buscado = filter.toLowerCase();
+        for (let i = 0; i <= titulo.length - buscado.length; i++) {
+          let iguales = true;
+          for (let j = 0; j < buscado.length; j++) {
+            if (titulo[i + j] !== buscado[j]) iguales = false;
+          }
+          if (iguales) return true;
+        }
+      }
+      return false;
     });
-
-    const favoritos = localStorage.getItem("favoritos")
-      ? JSON.parse(localStorage.getItem("favoritos"))
-      : [];
 
     return (
       <div className="container">
@@ -104,7 +132,8 @@ class Movies extends Component {
 
         <section className="row cards all-movies" id="movies">
           {moviesFiltradas.map((movie) => {
-            const esFav = favoritos.includes(movie.id);
+            const esFavorito = favoritos.find(f => f.id === movie.id && f.type === "movie");
+
             return (
               <article className="single-card-movie col-md-3 mb-4" key={movie.id}>
                 <img
@@ -121,18 +150,26 @@ class Movies extends Component {
                   <p className="card-text">
                     {movie.overview ? movie.overview : "Sin descripción."}
                   </p>
-
-                  <Link to={"/detail/movies/" + movie.id} className="btn-ver-mas">
+                  <Link
+                    to={"/detail/movies/" + movie.id}
+                    className="btn-ver-mas"
+                  >
                     Ver más
                   </Link>
 
-                  {esFav ? (
-                    <button className="btn-favorito" onClick={() => this.quitarDeFavoritos(movie.id)}>
+                  {esFavorito ? (
+                    <button
+                      className="btn-favorito"
+                      onClick={() => this.quitarDeFavoritos(movie.id)}
+                    >
                       Sacar de Favoritos
                     </button>
                   ) : (
-                    <button className="btn-favorito" onClick={() => this.agregarAFavoritos(movie.id)}>
-                      Agregar a favoritos
+                    <button
+                      className="btn-favorito"
+                      onClick={() => this.agregarAFavoritos(movie)}
+                    >
+                      Agregar a Favoritos
                     </button>
                   )}
                 </div>

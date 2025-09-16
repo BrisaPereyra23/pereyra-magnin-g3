@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Favorites extends Component {
   constructor(props) {
     super(props);
     this.state = {
       favorites: [],
+      mostrarDescripcion: {}, // objeto para manejar qué descripción está visible
     };
   }
 
@@ -15,6 +17,17 @@ class Favorites extends Component {
         favorites: JSON.parse(favs),
       });
     }
+  }
+
+  toggleDescripcion(id) {
+    let nuevoEstado = {};
+    // Copio lo que ya había
+    for (let clave in this.state.mostrarDescripcion) {
+      nuevoEstado[clave] = this.state.mostrarDescripcion[clave];
+    }
+    // Cambio solo el que corresponde
+    nuevoEstado[id] = !nuevoEstado[id];
+    this.setState({ mostrarDescripcion: nuevoEstado });
   }
 
   render() {
@@ -38,6 +51,32 @@ class Favorites extends Component {
                   />
                   <h3>{fav.title ? fav.title : fav.name}</h3>
                   <p>{fav.type === "movie" ? "Película" : "Serie"}</p>
+
+                  {/* Botón ver descripción */}
+                  <button
+                    onClick={() => this.toggleDescripcion(fav.id)}
+                    className="btn btn-info"
+                  >
+                    {this.state.mostrarDescripcion[fav.id]
+                      ? "Ocultar descripción"
+                      : "Ver descripción"}
+                  </button>
+
+                  {/* Descripción */}
+                  {this.state.mostrarDescripcion[fav.id] && (
+                    <p>{fav.overview}</p>
+                  )}
+
+                  {/* Botón ir a detalle */}
+                  <Link
+                    to={`/${fav.type}/${fav.id}`}
+                    className="btn btn-primary"
+                  >
+                    Ir a detalle
+                  </Link>
+
+                  {/* Botón favorito (acá podrías hacer que lo saque de favoritos) */}
+                  <button className="btn btn-warning">♥️</button>
                 </article>
               );
             })}
@@ -49,6 +88,7 @@ class Favorites extends Component {
 }
 
 export default Favorites;
+
 
 
         {/* Navbar 
