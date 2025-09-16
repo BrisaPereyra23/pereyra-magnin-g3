@@ -1,9 +1,56 @@
-import React from "react";
+import React, { Component } from "react";
 
-function Favorites() {
-    return(
-    <>
-    <div className="container">
+class Favorites extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      favorites: [],
+    };
+  }
+
+  componentDidMount() {
+    let favs = localStorage.getItem("favorites");
+    if (favs !== null) {
+      this.setState({
+        favorites: JSON.parse(favs),
+      });
+    }
+  }
+
+  render() {
+    return (
+      <div className="favorites-page">
+        <h2>Mis Favoritos</h2>
+
+        {this.state.favorites.length === 0 ? (
+          <p>No tenés favoritos guardados todavía.</p>
+        ) : (
+          <section className="row cards all-movies" id="movies">
+            {this.state.favorites.map((fav) => {
+              return (
+                <article
+                  key={fav.id}
+                  className="single-card-movie col-md-3 mb-4"
+                >
+                  <img
+                    src={`https://image.tmdb.org/t/p/w200${fav.poster_path}`}
+                    alt={fav.title ? fav.title : fav.name}
+                  />
+                  <h3>{fav.title ? fav.title : fav.name}</h3>
+                  <p>{fav.type === "movie" ? "Película" : "Serie"}</p>
+                </article>
+              );
+            })}
+          </section>
+        )}
+      </div>
+    );
+  }
+}
+
+export default Favorites;
+
+
         {/* Navbar 
       <img src="./img/Logo_Peliculas.png" className="peliculas-image" alt="logo" />
         
@@ -89,10 +136,3 @@ function Favorites() {
             
 
         </section> */}
-    </div> 
-
-</>)
-} 
-
-
-export default Favorites;
