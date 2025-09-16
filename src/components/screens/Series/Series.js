@@ -13,19 +13,26 @@ class Series extends Component {
       error: null,
       page: 1,
       filter: "",
-      favoritos: JSON.parse(localStorage.getItem("favoritosSeries")) || []
+      favoritos: [], // ids guardados
     };
   }
 
   componentDidMount() {
     this.fetchSeries();
+
+    let favs = localStorage.getItem("favorites");
+    if (favs !== null) {
+      this.setState({ favoritos: JSON.parse(favs) });
+    }
   }
 
   fetchSeries = () => {
     const { categoria } = this.props.match.params;
     let url = "";
 
-    if (categoria === "popular" || categoria === undefined) {
+    if (categoria === "popular") {
+      url = `https://api.themoviedb.org/3/tv/popular?language=es-ES&page=${this.state.page}&api_key=2277889cc1ea5b292e88819d7f7e0ff2`;
+    } else if (categoria === undefined) {
       url = `https://api.themoviedb.org/3/tv/popular?language=es-ES&page=${this.state.page}&api_key=2277889cc1ea5b292e88819d7f7e0ff2`;
     } else {
       this.props.history.push("/NotFound");
@@ -35,7 +42,7 @@ class Series extends Component {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        const resultados = data && data.results ? data.results : [];
+        let resultados = data && data.results ? data.results : [];
         let nuevas = [];
 
         if (this.state.page === 1) {
@@ -48,7 +55,7 @@ class Series extends Component {
         this.setState({
           series: nuevas,
           cargando: false,
-          error: null
+          error: null,
         });
       })
       .catch((error) => {
@@ -67,24 +74,32 @@ class Series extends Component {
     this.setState({ filter: event.target.value });
   };
 
-  agregarAFavoritos = (id) => {
-    this.setState((prevState) => {
-      const nuevosFavs = [];
-      prevState.favoritos.forEach(f => nuevosFavs.push(f));
-      if (!nuevosFavs.includes(id)) {
-        nuevosFavs.push(id);
-        localStorage.setItem("favoritosSeries", JSON.stringify(nuevosFavs));
-      }
-      return { favoritos: nuevosFavs };
-    });
+  agregarAFavoritos = (serie) => {
+    let favs = localStorage.getItem("favorites");
+    let favoritos = favs ? JSON.parse(favs) : [];
+
+    let existe = favoritos.find(f => f.id === serie.id && f.type === "tv");
+    if (!existe) {
+      favoritos.push({
+        id: serie.id,
+        title: serie.title,
+        name: serie.name,
+        overview: serie.overview,
+        poster_path: serie.poster_path,
+        type: "tv",
+      });
+      localStorage.setItem("favorites", JSON.stringify(favoritos));
+      this.setState({ favoritos });
+    }
   };
 
-  quitarDeFavoritos = (id) => {
-    this.setState((prevState) => {
-      const nuevosFavs = prevState.favoritos.filter((favId) => favId !== id);
-      localStorage.setItem("favoritosSeries", JSON.stringify(nuevosFavs));
-      return { favoritos: nuevosFavs };
-    });
+  quitarDeFavoritos = (serieId) => {
+    let favs = localStorage.getItem("favorites");
+    let favoritos = favs ? JSON.parse(favs) : [];
+
+    favoritos = favoritos.filter(f => !(f.id === serieId && f.type === "tv"));
+    localStorage.setItem("favorites", JSON.stringify(favoritos));
+    this.setState({ favoritos });
   };
 
   render() {
@@ -99,8 +114,18 @@ class Series extends Component {
 
     const seriesFiltradas = series.filter((serie) => {
       if (filter === "") return true;
-      if (!serie.name) return false;
-      return serie.name.toLowerCase().includes(filter.toLowerCase());
+      if (serie.name) {
+        let titulo = serie.name.toLowerCase();
+        let buscado = filter.toLowerCase();
+        for (let i = 0; i <= titulo.length - buscado.length; i++) {
+          let iguales = true;
+          for (let j = 0; j < buscado.length; j++) {
+            if (titulo[i + j] !== buscado[j]) iguales = false;
+          }
+          if (iguales) return true;
+        }
+      }
+      return false;
     });
 
     return (
@@ -113,7 +138,8 @@ class Series extends Component {
 
         <section className="row cards all-series" id="series">
           {seriesFiltradas.map((serie) => {
-            const esFav = favoritos.includes(serie.id);
+            const esFavorito = favoritos.find(f => f.id === serie.id && f.type === "tv");
+
             return (
               <article className="single-card-series col-md-3 mb-4" key={serie.id}>
                 <img
@@ -137,7 +163,7 @@ class Series extends Component {
                     Ver más
                   </Link>
 
-                  {esFav ? (
+                  {esFavorito ? (
                     <button
                       className="btn-favorito"
                       onClick={() => this.quitarDeFavoritos(serie.id)}
@@ -147,9 +173,9 @@ class Series extends Component {
                   ) : (
                     <button
                       className="btn-favorito"
-                      onClick={() => this.agregarAFavoritos(serie.id)}
+                      onClick={() => this.agregarAFavoritos(serie)}
                     >
-                      Agregar a favoritos
+                      Agregar a Favoritos
                     </button>
                   )}
                 </div>
