@@ -19,15 +19,18 @@ class Favorites extends Component {
     }
   }
 
-  toggleDescripcion(id) {
-    let nuevoEstado = {};
-    // Copio lo que ya había
-    for (let clave in this.state.mostrarDescripcion) {
-      nuevoEstado[clave] = this.state.mostrarDescripcion[clave];
+  manejarDescripcion(id) {
+    let visible;
+
+    if (this.state.descripcionVisible.filter(item => item === id).length > 0) {
+      
+      visible = this.state.descripcionVisible.filter(item => item !== id);
+    } else {
+      
+      visible = this.state.descripcionVisible.concat(id);
     }
-    // Cambio solo el que corresponde
-    nuevoEstado[id] = !nuevoEstado[id];
-    this.setState({ mostrarDescripcion: nuevoEstado });
+
+    this.setState({ descripcionVisible: visible });
   }
 
   render() {

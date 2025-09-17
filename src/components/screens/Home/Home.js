@@ -120,7 +120,7 @@ class Home extends Component {
                 <button onClick={() => this.manejarDescripcion(peli.id)}>
                   Ver descripción
                 </button>
-                <Link to={`/detail/movies/${peli.id}`}>Ir a detalle</Link>
+                <Link to={`/detail/movies/${peli.id}`} className= "detalle">Ir a detalle</Link>
               </div>
             </article>
           ))}
@@ -140,7 +140,7 @@ class Home extends Component {
                 <button onClick={() => this.manejarDescripcion(serie.id)}>
                   Ver descripción
                 </button>
-                <Link to={`/detail/series/${serie.id}`}>Ir a detalle</Link>
+                <Link to={`/detail/series/${serie.id}`} className ="detalle" >Ir a detalle</Link>
               </div>
             </article>
           ))}

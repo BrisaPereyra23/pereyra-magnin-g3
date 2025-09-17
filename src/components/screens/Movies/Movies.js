@@ -107,16 +107,18 @@ class Movies extends Component {
     this.setState({ favoritos });
   };
   manejarDescripcion(id) {
-  let visible;
+    let visible;
 
-  if (this.state.descripcionVisible && this.state.descripcionVisible.includes(id)) {
-    visible = this.state.descripcionVisible.filter(item => item !== id);
-  } else {
-    visible = [...(this.state.descripcionVisible || []), id];
+    if (this.state.descripcionVisible.filter(item => item === id).length > 0) {
+      
+      visible = this.state.descripcionVisible.filter(item => item !== id);
+    } else {
+      
+      visible = this.state.descripcionVisible.concat(id);
+    }
+
+    this.setState({ descripcionVisible: visible });
   }
-
-  this.setState({ descripcionVisible: visible });
-}
 
   render() {
     const { movies, cargando, error, filter, favoritos } = this.state;

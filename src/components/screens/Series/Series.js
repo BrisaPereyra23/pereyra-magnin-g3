@@ -14,6 +14,7 @@ class Series extends Component {
       page: 1,
       filter: "",
       favoritos: [], // ids guardados
+      descripcionVisible: [],
     };
   }
 
@@ -101,6 +102,19 @@ class Series extends Component {
     localStorage.setItem("favorites", JSON.stringify(favoritos));
     this.setState({ favoritos });
   };
+  manejarDescripcion(id) {
+    let visible;
+
+    if (this.state.descripcionVisible.filter(item => item === id).length > 0) {
+      
+      visible = this.state.descripcionVisible.filter(item => item !== id);
+    } else {
+      
+      visible = this.state.descripcionVisible.concat(id);
+    }
+
+    this.setState({ descripcionVisible: visible });
+  }
 
   render() {
     const { series, cargando, error, filter, favoritos } = this.state;
@@ -146,16 +160,23 @@ class Series extends Component {
                   className="card-img-top"
                   src={
                     serie.poster_path
-                      ? "https://image.tmdb.org/t/p/w500" + serie.poster_path
-                      : "https://via.placeholder.com/500x750?text=Sin+imagen"
+                      ? `https://image.tmdb.org/t/p/w500${serie.poster_path}`
+                      : `https://via.placeholder.com/500x750?text=Sin+imagen`
                   }
-                  alt={serie.name}
+                  alt={serie.name ? serie.name: "Sin titulo"}
                 />
                 <div className="card-body">
                   <h5 className="card-title">{serie.name}</h5>
-                  <p className="card-text">
+
+                  {this.state.descripcionVisible.includes(serie.id) && (
+                    <p className="card-text">
                     {serie.overview ? serie.overview : "Sin descripción."}
                   </p>
+                  )}
+
+                  <button onClick={() => this.manejarDescripcion(serie.id)}>
+                    Ver descripción
+                  </button>
                   <Link
                     to={"/detail/series/" + serie.id}
                     className="btn-ver-mas"

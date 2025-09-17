@@ -129,7 +129,18 @@ p.card-text {
     margin: -4px;
     background: #ccc;
 }
-
+.detalle {
+    font-size: 10px;
+    font-weight: bolder;
+    background-color: #000c35;
+    border-radius: 3px;
+    padding: 10px;
+    color: #e3d4d4;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
 @media(min-width: 765px) {
     nav {
         grid-template-columns: 4fr 3fr;
