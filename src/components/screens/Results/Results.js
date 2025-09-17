@@ -3,7 +3,7 @@ import Header from "../../Header/Header";
 import { Link } from "react-router-dom";
 import Loader from "../../Loader/Loader";
 import NotFound from "../NotFound/NotFound";
-
+import "./Results.css";
 class Results extends Component {
   constructor(props) {
     super(props);
@@ -13,6 +13,7 @@ class Results extends Component {
       cargando: true,
       error: null,
       tipoBusqueda: this.props.match.params.query,
+      descripcionVisible: [], 
     };
   }
 
@@ -36,29 +37,52 @@ class Results extends Component {
       })
       .catch(err => this.setState({ error: err.message, cargando: false }));
   }
+manejarDescripcion(id) {
+  let visible;
+
+  if (this.state.descripcionVisible && this.state.descripcionVisible.includes(id)) {
+    visible = this.state.descripcionVisible.filter(item => item !== id);
+  } else {
+    visible = [...(this.state.descripcionVisible || []), id];
+  }
+
+  this.setState({ descripcionVisible: visible });
+}
 
   renderCard(item, tipo) {
-    const title = tipo === "movie" ? item.title : item.name;
-    const descripcion = item.overview;
-    const imagen = item.poster_path;
-    const link = tipo === "movie" ? `/detail/movies/${item.id}` : `/detail/series/${item.id}`;
+  const title = tipo === "movie" ? item.title : item.name;
+  const descripcion = item.overview;
+  const imagen = item.poster_path;
+  const link = tipo === "movie" ? `/detail/movies/${item.id}` : `/detail/series/${item.id}`;
 
-    return (
-      <article className="single-card-movie" key={`${tipo}-${item.id}`}>
-        <img
-          src={`https://image.tmdb.org/t/p/w500${imagen}`}
-          className="card-img-top"
-          alt={title}
-        />
-        <div className="cardBody">
-          <h5 className="card-title">{title}</h5>
-          <p className="card-text">{descripcion}</p>
-          <Link to={link} className="btn btn-primary">Ver más</Link>
-          <button className="btn alert-info">♥️</button>
-        </div>
-      </article>
-    );
-  }
+  return (
+    <article className="single-card-movie" key={`${tipo}-${item.id}`}>
+      <img
+        src={`https://image.tmdb.org/t/p/w500${imagen}`}
+        className="card-img-top"
+        alt={title}
+      />
+      <div className="cardBody">
+        <h5 className="card-title">{title}</h5>
+
+        {this.state.descripcionVisible.includes(item.id) && (
+          <p className="card-text">
+            {descripcion ? descripcion : "Sin descripción."}
+          </p>
+        )}
+
+        <button onClick={() => this.manejarDescripcion(item.id)}>
+          {this.state.descripcionVisible.includes(item.id)
+            ? "Ocultar descripción"
+            : "Ver descripción"}
+        </button>
+
+        <Link to={link} className="btn-ver-mas">Ver más</Link>
+        <button className="btn-favorito">✔️</button>
+      </div>
+    </article>
+  );
+}
 
   render() {
     const { resultadosMovies, resultadosSeries, cargando, error, tipoBusqueda } = this.state;
@@ -80,7 +104,7 @@ class Results extends Component {
         <section className="row cards" id="series">
           {resultadosSeries.map(serie => this.renderCard(serie, "series"))}
         </section>
-
+        
         
       </div>
     );

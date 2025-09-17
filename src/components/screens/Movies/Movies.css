@@ -8,11 +8,11 @@
 
 p.card-text
  {
-    font-size: 12px;
+    font-size: 10px;
     margin: -4px;
     display: flex;
     align-items: flex-end;
-    background-color: white;
+    background: #ccc;
     color: black;
 }
 .btn-ver-mas {
@@ -28,7 +28,37 @@ p.card-text
   display: inline-block;
   cursor: pointer;
 }
-
+.single-card-movie
+ {
+    width: 22%;
+    align-items: center;
+    display: flex
+;
+ 
+    padding: 5px;
+    flex-direction: column;
+    background: #8f9196;
+    border-radius: 5px;
+    align-content: center;
+    justify-content: flex-start;
+}
+.card-img-top {
+    width: 85%;
+    border-radius: 5px;
+    padding-top: 3px;
+}
+button
+ {
+    font-size: 12px;
+    margin: 5px;
+    background-color: #2e2f33;
+    border: none;
+    font-family: monospace;
+    border-radius: 3px;
+    padding: 8px 12px;
+    color: white;
+    cursor: pointer;
+}
 .btn-favorito {
   font-size: 12px;
   margin: 5px;
@@ -54,23 +84,40 @@ h5 {
     justify-content: space-around;
 }
 
-a.btn-ver-todas, .btn-ver-todas {
-  font-size: 17px;
-  font-weight: bolder;
-  background-color: #000c35;
-  border-radius: 3px;
-  padding: 13px;
-  color: #e3d4d4;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
+a.btn-ver-todas, .btn-ver-todas
+ {
+    font-size: 17px;
+    font-weight: bolder;
+    background-color: #000c35;
+    border-radius: 3px;
+    padding: 13px;
+    color: #e3d4d4;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .all-movies .single-card-movie {
-  width: 20%;
+    width: 20%;
+    margin: 10px;
 }
+p.card-text {
+    font-size: 10px;
+    margin: -4px;
+}
+p.card-text
 
+ {
+    font-size: 12px;
+    margin: -29px;
+    display: flex
+;
+    align-items: flex-end;
+    color: black;
+    padding: -18px;
+}
 p.card-text {
   font-size: 12px;
   margin: -4px;

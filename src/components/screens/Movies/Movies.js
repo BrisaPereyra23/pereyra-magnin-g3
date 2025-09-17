@@ -5,17 +5,19 @@ import NotFound from "../NotFound/NotFound";
 import "./Movies.css";
 
 class Movies extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      movies: [],
-      cargando: true,
-      error: null,
-      page: 1,
-      filter: "",
-      favoritos: [], //ids 
-    };
+ constructor(props) {
+  super(props);
+  this.state = {
+    movies: [],
+    cargando: true,
+    error: null,
+    page: 1,
+    filter: "",
+    favoritos: [],
+    descripcionVisible: [], 
+  };
   }
+  
 
   componentDidMount() {
     this.fetchMovies();
@@ -104,6 +106,17 @@ class Movies extends Component {
     localStorage.setItem("favorites", JSON.stringify(favoritos));
     this.setState({ favoritos });
   };
+  manejarDescripcion(id) {
+  let visible;
+
+  if (this.state.descripcionVisible && this.state.descripcionVisible.includes(id)) {
+    visible = this.state.descripcionVisible.filter(item => item !== id);
+  } else {
+    visible = [...(this.state.descripcionVisible || []), id];
+  }
+
+  this.setState({ descripcionVisible: visible });
+}
 
   render() {
     const { movies, cargando, error, filter, favoritos } = this.state;
@@ -117,32 +130,14 @@ class Movies extends Component {
 
     const moviesFiltradas = movies.filter((movie) => {
       if (filter === "") return true;
-      if (movie.title) {
-        let titulo = movie.title.toLowerCase();
-        let buscado = filter.toLowerCase();
+      if (!movie.title) return false;
 
-        let coincide = false;
+      let titulo = movie.title.toLowerCase();
+      let buscado = filter.toLowerCase();
 
-        Array.from(titulo).map((_, i) => {
-          if (i <= titulo.length - buscado.length) {
-            let iguales = true;
-
-            Array.from(buscado).map((_, j) => {
-              if (titulo[i + j] !== buscado[j]) {
-                iguales = false;
-              }
-            });
-
-            if (iguales) {
-              coincide = true;
-            }
-          }
-        });
-
-        if (coincide) return true;
-      }
-      return false;
+      return titulo.includes(buscado);
     });
+
 
     return (
       <div className="container">
@@ -166,18 +161,22 @@ class Movies extends Component {
                 }
                 alt={movie.title ? movie.title : "Sin título"}
               />
+<div className="card-body">
+  <h5 className="card-title">{movie.title}</h5>
+  
+  {this.state.descripcionVisible.includes(movie.id) && (
+    <p className="card-text">
+      {movie.overview ? movie.overview : "Sin descripción."}
+    </p>
+  )}
 
-                <div className="card-body">
-                  <h5 className="card-title">{movie.title}</h5>
-                  <p className="card-text">
-                    {movie.overview ? movie.overview : "Sin descripción."}
-                  </p>
-                  <Link
-                    to={"/detail/movies/" + movie.id}
-                    className="btn-ver-mas"
-                  >
-                    Ver más
-                  </Link>
+  <button onClick={() => this.manejarDescripcion(movie.id)}>
+    Ver descripción
+  </button>
+
+  <Link to={"/detail/movies/" + movie.id} className="btn-ver-mas">
+    Ver más
+  </Link>
 
                   {esFavorito ? (
                     <button

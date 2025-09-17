@@ -8,6 +8,14 @@ nav {
 .nav {
     margin: 0 !important;
 }
+.container {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    background: #ccc;
+}
 .nav a {
     color: #444;
     text-decoration: none;
@@ -116,6 +124,12 @@ p.card-text
 h5 {
     font-size: 14px;
 }
+p.card-text {
+    font-size: 10px;
+    margin: -4px;
+    background: #ccc;
+}
+
 @media(min-width: 765px) {
     nav {
         grid-template-columns: 4fr 3fr;

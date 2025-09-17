@@ -72,16 +72,14 @@ class Favorites extends Component {
                     <p>{fav.overview}</p>
                   )}
 
-                  {/* Botón ir a detalle */}
+            
                   <Link
                     to={`/${fav.type}/${fav.id}`}
                     className="btn btn-primary"
                   >
                     Ir a detalle
                   </Link>
-
-                  {/* Botón favorito (acá podrías hacer que lo saque de favoritos) */}
-                  <button className="btn btn-warning">♥️</button>
+                  <button className="btn btn-warning">✔️</button>
                 </article>
               );
             })}
