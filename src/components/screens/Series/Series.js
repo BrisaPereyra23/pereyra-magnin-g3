@@ -13,7 +13,7 @@ class Series extends Component {
       error: null,
       page: 1,
       filter: "",
-      favoritos: [], // ids guardados
+      favoritos: [],
       descripcionVisible: [],
     };
   }
@@ -102,15 +102,21 @@ class Series extends Component {
     localStorage.setItem("favorites", JSON.stringify(favoritos));
     this.setState({ favoritos });
   };
-  manejarDescripcion(id) {
-    let visible;
 
-    if (this.state.descripcionVisible.filter(item => item === id).length > 0) {
-      
-      visible = this.state.descripcionVisible.filter(item => item !== id);
+  manejarDescripcion(id) {
+    let visible = this.state.descripcionVisible;
+
+    if (visible.includes(id)) {
+      visible = visible.filter(function (item) {
+        return item !== id;
+      });
     } else {
-      
-      visible = this.state.descripcionVisible.concat(id);
+      let nuevo = [];
+      visible.map(function (item) {
+        nuevo.push(item);
+      });
+      nuevo.push(id);
+      visible = nuevo;
     }
 
     this.setState({ descripcionVisible: visible });
@@ -127,19 +133,14 @@ class Series extends Component {
     }
 
     const seriesFiltradas = series.filter((serie) => {
-      if (filter === "") return true;
-      if (serie.name) {
-        let titulo = serie.name.toLowerCase();
-        let buscado = filter.toLowerCase();
-        for (let i = 0; i <= titulo.length - buscado.length; i++) {
-          let iguales = true;
-          for (let j = 0; j < buscado.length; j++) {
-            if (titulo[i + j] !== buscado[j]) iguales = false;
-          }
-          if (iguales) return true;
-        }
-      }
-      return false;
+  if (filter === "") return true;
+  if (!serie.name) return false;
+
+  let titulo = serie.name.toLowerCase();
+  let buscado = filter.toLowerCase();
+
+  return titulo.includes(buscado);
+
     });
 
     return (
@@ -153,6 +154,7 @@ class Series extends Component {
         <section className="row cards all-series" id="series">
           {seriesFiltradas.map((serie) => {
             const esFavorito = favoritos.find(f => f.id === serie.id && f.type === "tv");
+            const descripcionActiva = this.state.descripcionVisible.includes(serie.id);
 
             return (
               <article className="single-card-series col-md-3 mb-4" key={serie.id}>
@@ -168,15 +170,16 @@ class Series extends Component {
                 <div className="card-body">
                   <h5 className="card-title">{serie.name}</h5>
 
-                  {this.state.descripcionVisible.includes(serie.id) && (
+                  {descripcionActiva && (
                     <p className="card-text">
-                    {serie.overview ? serie.overview : "Sin descripción."}
-                  </p>
+                      {serie.overview ? serie.overview : "Sin descripción."}
+                    </p>
                   )}
 
                   <button onClick={() => this.manejarDescripcion(serie.id)}>
-                    Ver descripción
+                    {descripcionActiva ? "Ocultar descripción" : "Ver descripción"}
                   </button>
+
                   <Link
                     to={"/detail/series/" + serie.id}
                     className="btn-ver-mas"

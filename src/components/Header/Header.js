@@ -8,8 +8,8 @@ function Header() {
     <header className="header">
       <div className="header-top">
         <section className="header-section">
-        <img src="./img/Logo_Peliculas.png" className="peliculas-image" alt="logo" />
-        <h1 className="site-title">Popcorn Studio</h1>
+         <img src="/img/Logo_Peliculas.png" className="peliculas-image" alt="logo" />
+          <h1 className="site-title">Popcorn Studio</h1>
         </section>
         <Navbar/>
         <Formulario/>
@@ -19,4 +19,4 @@ function Header() {
 }
 
 export default Header;
-// claro aca tiene que ir el navbar concatenado 
+

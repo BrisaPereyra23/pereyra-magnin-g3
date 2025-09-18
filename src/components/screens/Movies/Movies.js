@@ -5,19 +5,18 @@ import NotFound from "../NotFound/NotFound";
 import "./Movies.css";
 
 class Movies extends Component {
- constructor(props) {
-  super(props);
-  this.state = {
-    movies: [],
-    cargando: true,
-    error: null,
-    page: 1,
-    filter: "",
-    favoritos: [],
-    descripcionVisible: [], 
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      movies: [],
+      cargando: true,
+      error: null,
+      page: 1,
+      filter: "",
+      favoritos: [],
+      descripcionVisible: [], 
+    };
   }
-  
 
   componentDidMount() {
     this.fetchMovies();
@@ -106,15 +105,23 @@ class Movies extends Component {
     localStorage.setItem("favorites", JSON.stringify(favoritos));
     this.setState({ favoritos });
   };
-  manejarDescripcion(id) {
-    let visible;
 
-    if (this.state.descripcionVisible.filter(item => item === id).length > 0) {
-      
-      visible = this.state.descripcionVisible.filter(item => item !== id);
+  manejarDescripcion(id) {
+    let visible = this.state.descripcionVisible;
+
+    if (visible.includes(id)) {
+    
+      visible = visible.filter(function (item) {
+        return item !== id;
+      });
     } else {
-      
-      visible = this.state.descripcionVisible.concat(id);
+     
+      let nuevo = [];
+      visible.map(function (item) {
+        nuevo.push(item);
+      });
+      nuevo.push(id);
+      visible = nuevo;
     }
 
     this.setState({ descripcionVisible: visible });
@@ -140,7 +147,6 @@ class Movies extends Component {
       return titulo.includes(buscado);
     });
 
-
     return (
       <div className="container">
         <h2 className="alert alert-primary">
@@ -152,47 +158,56 @@ class Movies extends Component {
         <section className="row cards all-movies" id="movies">
           {moviesFiltradas.map((movie) => {
             const esFavorito = favoritos.find(f => f.id === movie.id && f.type === "movie");
+            const descripcionActiva = this.state.descripcionVisible.includes(movie.id);
+
             return (
-            <article className="single-card-movie col-md-3 mb-4" key={movie.id}>
-            <img
-            className="card-img-top"
-            src={
-            movie.poster_path
-             ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-              : "https://via.placeholder.com/500x750?text=Sin+imagen"
-                }
-                alt={movie.title ? movie.title : "Sin título"}
-            />
-            <div className="card-body">
-              <h5 className="card-title">{movie.title}</h5>
-              {this.state.descripcionVisible.includes(movie.id) && (
-              <p className="card-text">
-                {movie.overview ? movie.overview : "Sin descripción."}
-              </p>
-                )}
-              <button onClick={() => this.manejarDescripcion(movie.id)}>
-                Ver descripción
-              </button>
-              <Link to={"/detail/movies/" + movie.id} className="btn-ver-mas">
-              Ver más
-              </Link>
-              {esFavorito ? (
-                <button
-                  className="btn-favorito"
-                  onClick={() => this.quitarDeFavoritos(movie.id)}>
+              <article className="single-card-movie col-md-3 mb-4" key={movie.id}>
+                <img
+                  className="card-img-top"
+                  src={
+                    movie.poster_path
+                      ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+                      : "https://via.placeholder.com/500x750?text=Sin+imagen"
+                  }
+                  alt={movie.title ? movie.title : "Sin título"}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{movie.title}</h5>
+
+                  {descripcionActiva && (
+                    <p className="card-text">
+                      {movie.overview ? movie.overview : "Sin descripción."}
+                    </p>
+                  )}
+
+                  <button onClick={() => this.manejarDescripcion(movie.id)}>
+                    {descripcionActiva ? "Ocultar descripción" : "Ver descripción"}
+                  </button>
+
+                  <Link to={"/detail/movies/" + movie.id} className="btn-ver-mas">
+                    Ver más
+                  </Link>
+
+                  {esFavorito ? (
+                    <button
+                      className="btn-favorito"
+                      onClick={() => this.quitarDeFavoritos(movie.id)}>
                       Sacar de Favoritos
-                </button>) : (
-                <button
-                  className="btn-favorito"
-                  onClick={() => this.agregarAFavoritos(movie)}>
+                    </button>
+                  ) : (
+                    <button
+                      className="btn-favorito"
+                      onClick={() => this.agregarAFavoritos(movie)}>
                       Agregar a Favoritos
-                </button>)}
-            </div>
-            </article>
+                    </button>
+                  )}
+                </div>
+              </article>
             );
           })}
         </section>
-          {movies.length > 0 && (
+
+        {movies.length > 0 && (
           <button className="btn-ver-todas" onClick={this.cargarMas}>
             Cargar más
           </button>
