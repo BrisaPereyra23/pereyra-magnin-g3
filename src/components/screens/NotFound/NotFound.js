@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import Header from "../../Header/Header";
 function NotFound() {
   return (
     <div className="container text-center mt-5">

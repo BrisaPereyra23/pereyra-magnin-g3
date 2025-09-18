@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Navbar from "../../Navbar/Navbar";
 import "./Favorites.css";
 
 class Favorites extends Component {
@@ -43,7 +44,12 @@ class Favorites extends Component {
   render() {
     return (
       <div className="favorites-page">
-        <h2>Mis Favoritos</h2>
+        <section className="header-section">
+        <img src="/img/Logo_Peliculas.png" className="peliculas-image" alt="logo" />
+        <h1 className="site-title">Popcorn Studio</h1>
+        </section>
+        <h2 className="Fav">Mis Favoritos</h2>
+        <Navbar />
         {this.state.favorites.length === 0 ? (
           <p>No tenés favoritos guardados todavía.</p>
         ) : (

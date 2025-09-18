@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Loader from "../../Loader/Loader";
 import NotFound from "../NotFound/NotFound";
+import NavBar from "../../Navbar/Navbar";
 import "./SeriesDetail.css";
 class SeriesDetail extends Component {
   constructor(props) {
@@ -40,9 +41,13 @@ class SeriesDetail extends Component {
 // no se como hacer el coso de generos
     return (
       <div className="container">
+        <section className="header-section">
+        <img src="/img/Logo_Peliculas.png" className="peliculas-image" alt="logo" />
+        <h1 className="site-title">Popcorn Studio</h1>
+        </section>
+      <NavBar />
         <h2 className="nombreDetail">{serie.name}</h2>
         <img className="poster-img" src={imageUrl} alt={serie.name} />
-
         <p><strong>Calificación:</strong> {serie.vote_average}</p>
         <p><strong>Fecha de estreno:</strong> {serie.release_date}</p>
         <p><strong>Sinópsis:</strong> {serie.overview}</p>

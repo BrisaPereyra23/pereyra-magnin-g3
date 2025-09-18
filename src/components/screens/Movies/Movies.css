@@ -42,6 +42,10 @@ p.card-text
     align-content: center;
     justify-content: flex-start;
 }
+.all-movies .single-card-movie {
+    width: 27%;
+    margin: 10px;
+}
 .card-img-top {
     width: 85%;
     border-radius: 5px;
@@ -50,7 +54,7 @@ p.card-text
 button
  {
     font-size: 12px;
-    margin: 5px;
+    margin: 10px;
     background-color: #2e2f33;
     border: none;
     font-family: monospace;

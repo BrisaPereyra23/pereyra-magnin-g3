@@ -13,9 +13,7 @@ class Results extends Component {
       resultadosSeries: [],
       cargando: true,
       error: null,
-      tipoBusqueda: this.props.match.params.tipo,
-      query: this.props.match.params.query,
-      descripcionVisible: [], 
+      descripcionVisible: [],
     };
   }
 
@@ -23,9 +21,18 @@ class Results extends Component {
     this.fetchResults();
   }
 
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.match.params.query !== this.props.match.params.query ||
+      prevProps.match.params.tipo !== this.props.match.params.tipo
+    ) {
+      this.setState({ cargando: true }, () => this.fetchResults());
+    }
+  }
+
   fetchResults = () => {
-    const tipoBusqueda = this.state.tipoBusqueda;
-    const query = this.state.query;
+    const tipoBusqueda = this.props.match.params.tipo;
+    const query = this.props.match.params.query;
     let url = "";
 
     if (tipoBusqueda === "movies") {
@@ -67,11 +74,7 @@ class Results extends Component {
         return item !== id;
       });
     } else {
-      let nuevo = [];
-      visible.map(function (item) {
-        nuevo.push(item);
-      });
-      nuevo.push(id);
+      let nuevo = [...visible, id];
       visible = nuevo;
     }
 
@@ -79,14 +82,9 @@ class Results extends Component {
   }
 
   render() {
-    const {
-      resultadosMovies,
-      resultadosSeries,
-      cargando,
-      error,
-      tipoBusqueda,
-      query,
-    } = this.state;
+    const { resultadosMovies, resultadosSeries, cargando, error } = this.state;
+    const tipoBusqueda = this.props.match.params.tipo;
+    const query = this.props.match.params.query;
 
     if (cargando) {
       return <Loader />;
@@ -112,7 +110,8 @@ class Results extends Component {
               <p>No se encontraron resultados.</p>
             ) : (
               resultados.map((item) => {
-                const descripcionActiva = this.state.descripcionVisible.includes(item.id);
+                const descripcionActiva =
+                  this.state.descripcionVisible.includes(item.id);
 
                 return (
                   <article
@@ -126,7 +125,13 @@ class Results extends Component {
                           ? `https://image.tmdb.org/t/p/w500/${item.poster_path}`
                           : "https://via.placeholder.com/500x750?text=Sin+imagen"
                       }
-                      alt={item.title ? item.title : item.name ? item.name : "Sin título"}
+                      alt={
+                        item.title
+                          ? item.title
+                          : item.name
+                          ? item.name
+                          : "Sin título"
+                      }
                     />
                     <div className="card-body">
                       <h5 className="card-title">{item.title || item.name}</h5>
@@ -137,28 +142,24 @@ class Results extends Component {
                         </p>
                       )}
 
-                      <button onClick={() => this.manejarDescripcion(item.id)}>
-                        {descripcionActiva ? "Ocultar descripción" : "Ver descripción"}
+                      <button
+                        onClick={() => this.manejarDescripcion(item.id)}
+                      >
+                        {descripcionActiva
+                          ? "Ocultar descripción"
+                          : "Ver descripción"}
                       </button>
-                      <Link to={
+
+                      <Link
+                        to={
                           tipoBusqueda === "movies"
-                            ? `/reults/movies/${item.id}`
-                            : `/results/series/${item.id}`
+                            ? `/detail/movies/${item.id}`
+                            : `/detail/series/${item.id}`
                         }
                         className="btn-ver-mas"
                       >
                         Ver más
                       </Link>
-                      {/*<Link
-                        to={
-                          tipoBusqueda === "movies"
-                            ? `/reults/movies/${item.id}`
-                            : `/results/series/${item.id}`
-                        }
-                        className="btn-ver-mas"
-                      >
-                        Ver más
-                      </Link> SI QUEREMOS SERIES Y PELIS SEPARADAS*/}
                     </div>
                   </article>
                 );

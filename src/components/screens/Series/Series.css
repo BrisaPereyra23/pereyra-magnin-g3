@@ -5,16 +5,35 @@
   padding: 8px;
   border-radius: 4px;
 }
-
-p.card-text
- {
-    font-size: 12px;
-    margin: -4px;
-    display: flex;
-    align-items: flex-end;
-    background-color: white;
-    color: black;
+.all-series .single-card-series {
+    width: 20%;
+    margin: 10px;
+    border-radius: 5px;
+    background: #8f9196;
+    display: flex
+;
+    flex-direction: column;
+    align-items: center;
 }
+.card-img-top {
+    width: 85%;
+    border-radius: 8px;
+    padding-top: 3px;
+}
+.all-movies .single-card-movie {
+    width: 27%;
+    margin: 10px;
+}
+
+p.card-text {
+  font-size: 12px;
+  margin: -4px;
+  display: flex;
+  align-items: flex-end;
+  background-color: white;
+  color: black;
+}
+
 .btn-ver-mas {
   font-size: 12px;
   font-family: monospace;
@@ -46,15 +65,16 @@ h5 {
 }
 
 .card-body {
-    display: flex;
-    flex-direction: column;
-    margin: 15px;
-    align-items: baseline;
-    flex-wrap: wrap;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-a.btn-ver-todas, .btn-ver-todas {
+a.btn-ver-todas,
+.btn-ver-todas {
   font-size: 17px;
   font-weight: bolder;
   background-color: #000c35;
@@ -67,36 +87,32 @@ a.btn-ver-todas, .btn-ver-todas {
   display: inline-block;
 }
 
-.all-movies .single-card-movie {
-  width: 20%;
+/* Series */
+.all-series {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-p.card-text {
-  font-size: 12px;
-  margin: -4px;
-}
 .all-series .single-card-series {
   width: 20%;
-  display: inline-block;
-  vertical-align: top;
+  margin: 10px;
 }
 
 @media (max-width: 480px) {
-
-  .all-movies .single-card-movie,
   .all-series .single-card-series {
-    width: 90%; 
-    margin: 10px 0; 
+    width: 90%;
+    margin: 10px 0;
     display: block;
   }
 
   .card-text,
   p.card-text {
     font-size: 12px;
-    margin: 5px 0; 
+    margin: 5px 0;
     padding: 8px;
     border-radius: 4px;
-    display: block; 
+    display: block;
     color: black;
     background-color: #fff;
   }
@@ -110,9 +126,9 @@ p.card-text {
   .btn-favorito,
   a.btn-ver-todas,
   .btn-ver-todas {
-    width: 100%; 
+    width: 100%;
     padding: 10px;
-    margin: 5px 0; 
+    margin: 5px 0;
     font-size: 14px;
   }
 

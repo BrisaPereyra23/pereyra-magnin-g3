@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Loader from "../../Loader/Loader";
 import NotFound from "../NotFound/NotFound";
+import NavBar from "../../Navbar/Navbar";
+
 import "./MovieDetail.css";
 class MoviesDetail extends Component {
   constructor(props) {
@@ -38,6 +40,11 @@ class MoviesDetail extends Component {
 
   return (
     <div className="container">
+      <section className="header-section">
+        <img src="/img/Logo_Peliculas.png" className="peliculas-image" alt="logo" />
+        <h1 className="site-title">Popcorn Studio</h1>
+        </section>
+      <NavBar />
       <h2 className="nombreDetail">{movie.title}</h2>
       <img className="poster-img" src={imageUrl} alt={movie.title} />
 

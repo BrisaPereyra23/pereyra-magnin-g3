@@ -10,9 +10,22 @@ img.card-img {
     width: 95%;
     border-radius: 12px;
 }
-h3 {
-    font-size: 12px;
+img.poster-img {
+    width: 25%;
+    border-radius: 5px;
 }
+.Fav {
+    
+    align-content: center;
+    display: flex;
+    font-size: 25px;
+    justify-content: center;
+    background: #680606;
+    color: #f5e9e9;
+}
+
+    
+
 button.btn.btn-warning
  {
     padding: 5px;

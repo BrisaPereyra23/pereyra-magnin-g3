@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Loader from "../../Loader/Loader";
 import NotFound from "../NotFound/NotFound";
+import Navbar from "../../Navbar/Navbar";
 import "./Movies.css";
 
 class Movies extends Component {
@@ -149,6 +150,11 @@ class Movies extends Component {
 
     return (
       <div className="container">
+        <section className="header-section">
+        <img src="/img/Logo_Peliculas.png" className="peliculas-image" alt="logo" />
+        <h1 className="site-title">Popcorn Studio</h1>
+        </section>
+        <Navbar />
         <h2 className="alert alert-primary">
           {this.props.match.params.categoria === "popular"
             ? "Películas Populares"
