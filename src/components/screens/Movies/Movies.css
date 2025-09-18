@@ -32,9 +32,7 @@ p.card-text
  {
     width: 22%;
     align-items: center;
-    display: flex
-;
- 
+    display: flex;
     padding: 5px;
     flex-direction: column;
     background: #8f9196;
@@ -43,7 +41,7 @@ p.card-text
     justify-content: flex-start;
 }
 .all-movies .single-card-movie {
-    width: 27%;
+    width: 22%;
     margin: 10px;
 }
 .card-img-top {
@@ -75,8 +73,8 @@ button
 }
 
 h5 {
-  font-size: 16px;
-  margin: 4px;
+  font-size: 14px;
+
 }
 
 .card-body {
