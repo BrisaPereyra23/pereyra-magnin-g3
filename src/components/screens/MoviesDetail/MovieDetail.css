@@ -7,3 +7,16 @@ p.card-text
     font-size: 12px;
     margin: -4px;
 }
+
+@media (max-width: 480px) {
+  .all-movies .single-card-movie {
+    width: 90%; 
+    margin: 10px 0; 
+  }
+
+  p.card-text {
+    font-size: 12px; 
+    margin: 5px 0; 
+    padding: 5px; 
+  }
+}

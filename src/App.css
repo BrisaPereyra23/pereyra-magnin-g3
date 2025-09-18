@@ -95,3 +95,73 @@ nav {
         grid-template-columns: 4fr 3fr;
     }
 }
+
+@media (max-width: 480px) {
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .nav a {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+
+  .search-form,
+  .filter-form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px; 
+    padding: 0.5rem 0;
+  }
+
+  .search-form input,
+  .filter-form input,
+  .search-form .btn-sm {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  .cards {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .single-card-people,
+  .single-card-movie,
+  .single-card-playing,
+  .single-card-tv,
+  .single-card-on-air {
+    width: 90%; 
+    margin-bottom: 10px;
+  }
+
+  .all-movies .single-card-movie {
+    width: 90%;
+    margin-bottom: 10px;
+  }
+
+  #now-playing .card-text,
+  .tv-show .card-text,
+  #on-air-today .card-text {
+    height: auto; 
+  }
+
+  .user img {
+    width: 50px; 
+    margin-left: 0;
+    margin-bottom: 5px;
+  }
+
+  .cardBody {
+    margin-top: 10px;
+  }
+}

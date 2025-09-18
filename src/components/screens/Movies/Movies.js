@@ -153,8 +153,8 @@ class Movies extends Component {
           {moviesFiltradas.map((movie) => {
             const esFavorito = favoritos.find(f => f.id === movie.id && f.type === "movie");
             return (
-              <article className="single-card-movie col-md-3 mb-4" key={movie.id}>
-                <img
+            <article className="single-card-movie col-md-3 mb-4" key={movie.id}>
+            <img
             className="card-img-top"
             src={
             movie.poster_path
@@ -162,46 +162,37 @@ class Movies extends Component {
               : "https://via.placeholder.com/500x750?text=Sin+imagen"
                 }
                 alt={movie.title ? movie.title : "Sin título"}
-              />
-<div className="card-body">
-  <h5 className="card-title">{movie.title}</h5>
-  
-  {this.state.descripcionVisible.includes(movie.id) && (
-    <p className="card-text">
-      {movie.overview ? movie.overview : "Sin descripción."}
-    </p>
-  )}
-
-  <button onClick={() => this.manejarDescripcion(movie.id)}>
-    Ver descripción
-  </button>
-
-  <Link to={"/detail/movies/" + movie.id} className="btn-ver-mas">
-    Ver más
-  </Link>
-
-                  {esFavorito ? (
-                    <button
-                      className="btn-favorito"
-                      onClick={() => this.quitarDeFavoritos(movie.id)}
-                    >
+            />
+            <div className="card-body">
+              <h5 className="card-title">{movie.title}</h5>
+              {this.state.descripcionVisible.includes(movie.id) && (
+              <p className="card-text">
+                {movie.overview ? movie.overview : "Sin descripción."}
+              </p>
+                )}
+              <button onClick={() => this.manejarDescripcion(movie.id)}>
+                Ver descripción
+              </button>
+              <Link to={"/detail/movies/" + movie.id} className="btn-ver-mas">
+              Ver más
+              </Link>
+              {esFavorito ? (
+                <button
+                  className="btn-favorito"
+                  onClick={() => this.quitarDeFavoritos(movie.id)}>
                       Sacar de Favoritos
-                    </button>
-                  ) : (
-                    <button
-                      className="btn-favorito"
-                      onClick={() => this.agregarAFavoritos(movie)}
-                    >
+                </button>) : (
+                <button
+                  className="btn-favorito"
+                  onClick={() => this.agregarAFavoritos(movie)}>
                       Agregar a Favoritos
-                    </button>
-                  )}
-                </div>
-              </article>
+                </button>)}
+            </div>
+            </article>
             );
           })}
         </section>
-
-        {movies.length > 0 && (
+          {movies.length > 0 && (
           <button className="btn-ver-todas" onClick={this.cargarMas}>
             Cargar más
           </button>

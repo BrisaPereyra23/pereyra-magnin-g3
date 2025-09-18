@@ -22,3 +22,21 @@
     justify-content: flex-start;
 }
 
+@media (max-width: 480px) {
+
+  .single-card-movie {
+    width: 90%; 
+    margin: 10px 0; 
+    padding: 10px; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .card-text {
+    font-size: 12px; 
+    margin: 5px 0; 
+    padding: 8px;
+    border-radius: 4px;
+  }
+}

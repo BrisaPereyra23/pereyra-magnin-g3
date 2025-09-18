@@ -122,3 +122,57 @@ p.card-text {
   font-size: 12px;
   margin: -4px;
 }
+
+@media (max-width: 480px) {
+
+  .single-card-movie {
+    width: 90%; 
+    padding: 10px;
+    margin-bottom: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .card-img-top {
+    width: 100%;
+    padding-top: 3px;
+  }
+
+  .card-body {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 10px 0;
+  }
+
+  p.card-text {
+    font-size: 12px;
+    margin: 5px 0; 
+    padding: 5px;
+    display: block; 
+    color: black;
+    background: #ccc;
+  }
+
+  h5 {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+
+  button,
+  .btn-favorito,
+  .btn-ver-mas,
+  a.btn-ver-todas,
+  .btn-ver-todas {
+    width: 100%; 
+    font-size: 14px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .all-movies .single-card-movie {
+    width: 90%;
+    margin: 10px 0;
+  }
+}

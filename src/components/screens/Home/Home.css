@@ -145,4 +145,67 @@ p.card-text {
     nav {
         grid-template-columns: 4fr 3fr;
     }
+    
+}
+
+@media (max-width: 480px) {
+
+  nav {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .container {
+    padding: 10px;
+    align-items: stretch;
+  }
+
+  .search-form, .filter-form {
+    display: flex;
+    flex-direction: column; 
+    margin-bottom: 5px;
+  }
+
+  .search-form input,
+  .filter-form input,
+  .search-form .btn-sm {
+    width: 100%; 
+    font-size: 0.9rem;
+    padding: 6px;
+  }
+
+  .cards {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    align-items: center;
+  }
+
+  .single-card-people,
+  .single-card-movie,
+  .single-card-playing,
+  .single-card-tv,
+  .single-card-on-air {
+    width: 90%; 
+    margin-bottom: 10px;
+  }
+
+  .card-img-top {
+    width: 100%;
+  }
+
+  p.card-text {
+    font-size: 12px;
+  }
+
+  h5 {
+    font-size: 16px;
+  }
+
+  button,
+  .detalle {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+  }
 }
