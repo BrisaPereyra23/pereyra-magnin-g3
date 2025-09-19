@@ -82,7 +82,11 @@ class Results extends Component {
   }
 
   render() {
-    const { resultadosMovies, resultadosSeries, cargando, error } = this.state;
+    const resultadosMovies = this.state.resultadosMovies;
+    const resultadosSeries = this.state.resultadosSeries;
+    const cargando = this.state.cargando;
+    const error = this.state.error;
+
     const tipoBusqueda = this.props.match.params.tipo;
     const query = this.props.match.params.query;
 
@@ -134,8 +138,7 @@ class Results extends Component {
                       }
                     />
                     <div className="card-body">
-                      <h5 className="card-title">{item.title || item.name}</h5>
-
+                      <h5 className="card-title">{item.title ? item.title : item.name}</h5>
                       {descripcionActiva && (
                         <p className="card-text">
                           {item.overview ? item.overview : "Sin descripción."}

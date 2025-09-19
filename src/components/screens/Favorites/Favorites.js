@@ -65,8 +65,8 @@ class Favorites extends Component {
                     className="card-img"
                     src={
                       fav.poster_path
-                        ? "https://image.tmdb.org/t/p/w500" + fav.poster_path
-                        : "https://via.placeholder.com/500x750?text=Sin+imagen"
+                        ? `https://image.tmdb.org/t/p/w500 ${fav.poster_path}`
+                        : `https://via.placeholder.com/500x750?text=Sin+imagen`
                     }
                     alt={fav.title ? fav.title : fav.name}
                   />

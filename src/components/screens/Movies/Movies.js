@@ -129,7 +129,12 @@ class Movies extends Component {
   }
 
   render() {
-    const { movies, cargando, error, filter, favoritos } = this.state;
+    const movies = this.state.movies;
+    const cargando = this.state.cargando;
+    const error = this.state.error;
+    const filter = this.state.filter;
+    const favoritos = this.state.favoritos;
+
 
     if (cargando && movies.length === 0) {
       return <Loader />;

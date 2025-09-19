@@ -12,12 +12,16 @@ class Formulario extends Component {
     };
   }
 
-  componentDidMount() {
-    const tipoUrl = this.props.match.params.tipo;
-    if (tipoUrl === "movies" || tipoUrl === "series") {
+ componentDidMount() {
+  const tipoUrl = this.props.match.params.tipo;
+  if (tipoUrl === "movies") {
+    this.setState({ tipo: tipoUrl });
+  } else {
+    if (tipoUrl === "series") {
       this.setState({ tipo: tipoUrl });
     }
   }
+}
 
   handleSubmit = (e) => {
     e.preventDefault();
