@@ -1,6 +1,5 @@
 .search-form {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   width: 90%;
   max-width: 1000px;
@@ -8,16 +7,19 @@
 }
 
 .search-form input[type="text"] {
+  width: 100%;        /* que ocupe todo */
+  max-width: 700px;   /* límite para que no tape los radios */
   padding: 12px;
   font-size: 18px;
   border: 2px solid #ccc;
   border-radius: 6px;
-  margin-right: 15px;   
+  margin-right: 20px; /* deja espacio antes de los radios */
 }
 
 .buttonsRadio {
   display: flex;
   align-items: center;
+  margin-right: 20px; /* separa radios del botón */
 }
 
 .buttonsRadio input[type="radio"] {
@@ -32,12 +34,13 @@
 
 .buttonsRadio button {
   font-size: 18px;
-  background-color: #2e2f33;
+  background-color: #2e2f33; /* mismo color */
   border: none;
   border-radius: 6px;
   padding: 12px 20px;
   color: white;
 }
+
 
 /*
 section.buttonsRadio {
