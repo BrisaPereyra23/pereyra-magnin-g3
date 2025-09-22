@@ -38,14 +38,14 @@ class SeriesDetail extends Component {
     if (serie.poster_path) {
       imageUrl = "https://image.tmdb.org/t/p/w500" + serie.poster_path;
     }
-// no se como hacer el coso de generos
+
     return (
       <div className="container">
         <section className="header-section">
         <img src="/img/Logo_Peliculas.png" className="peliculas-image" alt="logo" />
         <h1 className="site-title">Popcorn Studio</h1>
         </section>
-      <NavBar />
+          <NavBar />
         <h2 className="nombreDetail">{serie.name}</h2>
         <img className="poster-img" src={imageUrl} alt={serie.name} />
         <p><strong>Calificación:</strong> {serie.vote_average}</p>
@@ -55,8 +55,6 @@ class SeriesDetail extends Component {
         {serie.genres.map((g, i) => (
         <span key={g.id}>{g.name}{i < serie.genres.length - 1 ? ", " : ""}</span>
         ))}</p>
-        
-
       </div>
     );
   }

@@ -122,8 +122,7 @@ class Results extends Component {
                 return (
                   <article
                     className="single-card col-md-3 mb-4"
-                    key={item.id}
-                  >
+                    key={item.id}>
                     <img
                       className="card-img-top"
                       src={
@@ -131,14 +130,7 @@ class Results extends Component {
                           ? `https://image.tmdb.org/t/p/w500/${item.poster_path}`
                           : "https://via.placeholder.com/500x750?text=Sin+imagen"
                       }
-                      alt={
-                        item.title
-                          ? item.title
-                          : item.name
-                          ? item.name
-                          : "Sin título"
-                      }
-                    />
+                      alt={item.title ? item.title: item.name ? item.name : "Sin título"}/>
                     <div className="card-body">
                       <h5 className="card-title">{item.title ? item.title : item.name}</h5>
                       {descripcionActiva && (
@@ -148,23 +140,16 @@ class Results extends Component {
                       )}
 
                       <button
-                        onClick={() => this.manejarDescripcion(item.id)}
-                      >
-                        {descripcionActiva
-                          ? "Ocultar descripción"
-                          : "Ver descripción"}
+                        onClick={() => this.manejarDescripcion(item.id)}>
+                        {descripcionActiva ? "Ocultar descripción" : "Ver descripción"}
                       </button>
 
                       <Link
                         to={
-                          tipoBusqueda === "movies"
-                            ? `/detail/movies/${item.id}`
-                            : `/detail/series/${item.id}`
+                          tipoBusqueda === "movies"? `/detail/movies/${item.id}`: `/detail/series/${item.id}`
                         }
-                        className="btn-ver-mas"
-                      >
-                        Ver más
-                      </Link>
+                        className="btn-ver-mas">
+                        Ver más</Link>
                     </div>
                   </article>
                 );

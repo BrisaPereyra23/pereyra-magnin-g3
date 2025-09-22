@@ -131,7 +131,11 @@ class Series extends Component {
 
 
   render() {
-    const { series, cargando, error, filter, favoritos } = this.state;
+    const series = this.state.series;
+    const cargando = this.state.cargando;
+    const error = this.state.error;
+    const filter = this.state.filter;
+    const favoritos  = this.state.favoritos;
 
     if (cargando && series.length === 0) {
       return <Loader />;
@@ -186,8 +190,7 @@ class Series extends Component {
                       ? `https://image.tmdb.org/t/p/w500${serie.poster_path}`
                       : `https://via.placeholder.com/500x750?text=Sin+imagen`
                   }
-                  alt={serie.name ? serie.name: "Sin titulo"}
-                />
+                  alt={serie.name ? serie.name: "Sin titulo"}/>
                 <div className="card-body">
                   <h5 className="card-title">{serie.name}</h5>
 
@@ -203,26 +206,17 @@ class Series extends Component {
 
                   <Link
                     to={"/detail/series/" + serie.id}
-                    className="btn-ver-mas"
-                  >
-                    Ver más
-                  </Link>
+                    className="btn-ver-mas">
+                    Ver más</Link>
 
                   {esFavorito ? (
                     <button
                       className="btn-favorito"
-                      onClick={() => this.quitarDeFavoritos(serie.id)}
-                    >
-                      Sacar de Favoritos
-                    </button>
-                  ) : (
-                    <button
+                      onClick={() => this.quitarDeFavoritos(serie.id)}>
+                      Sacar de Favoritos</button>) : (<button
                       className="btn-favorito"
-                      onClick={() => this.agregarAFavoritos(serie)}
-                    >
-                      Agregar a Favoritos
-                    </button>
-                  )}
+                      onClick={() => this.agregarAFavoritos(serie)}>
+                      Agregar a Favoritos</button>)}
                 </div>
               </article>
             );

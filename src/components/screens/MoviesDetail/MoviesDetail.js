@@ -35,7 +35,7 @@ class MoviesDetail extends Component {
 
   let imageUrl = "/images/default-movie.png";
   if (movie.poster_path) {
-    imageUrl = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
+    imageUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
   }
 
   return (

@@ -2,10 +2,7 @@
 import './App.css';
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-//import NavBar from "../src/components/Navbar/Navbar";
-//import Loader from "../src/components/Loader/Loader";
 import Footer from "../src/components/Footer/Footer";
-//import Header from "../src/components/Header/Header";
 import Favorites from "../src/components/screens/Favorites/Favorites"
 import Home from "../src/components/screens/Home/Home"
 import MoviesDetail from "../src/components/screens/MoviesDetail/MoviesDetail"
@@ -18,7 +15,6 @@ import Series from "../src/components/screens/Series/Series"
 function App() {
   return (
     <div className="App">
-     
        <div>  
         <Switch>
         <Route path="/" exact={true} component={Home} />
