@@ -96,6 +96,7 @@ a.btn-ver-todas,
   width: 22%;
   margin: 10px;
 }
+
 @media (max-width: 480px) {
   .single-card-movie,
   .all-movies .single-card-movie {

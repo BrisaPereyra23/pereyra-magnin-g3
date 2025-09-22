@@ -1,4 +1,5 @@
 import React from "react";
+import Formulario from "../Formulario/Formulario";
 import { Link } from "react-router-dom";
 
 function NavBar() {
@@ -21,7 +22,7 @@ function NavBar() {
       <img src="/img/user.jpg" className="user-img" alt="usuario" />
       <span className="user-name">Pepe Argento</span>
       </div>
-      
+      <Formulario />
     </nav>
     
   );

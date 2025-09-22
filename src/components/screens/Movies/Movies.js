@@ -165,6 +165,7 @@ class Movies extends Component {
             ? "Películas Populares"
             : "Todas las Películas"}
         </h2>
+      <section className="filtroFiltro" >
         <div className="search-bar">
           <input
             type="text"
@@ -174,6 +175,7 @@ class Movies extends Component {
             className="form-control"
           />
         </div>
+        </section>
         <section className="row cards all-movies" id="movies">
           {moviesFiltradas.map((movie) => {
             const esFavorito = favoritos.find(f => f.id === movie.id && f.type === "movie");

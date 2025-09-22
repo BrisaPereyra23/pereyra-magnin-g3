@@ -85,7 +85,7 @@ class Favorites extends Component {
 
                  <Link 
                  to={`/detail/${fav.type === "movie" ? "movies" : "series"}/${fav.id}`} 
-                 className="btn btn-primary">Ir a detalle</Link>
+                 className ="detalle">Ir a detalle</Link>
 
                   <button className="btn btn-warning">✔️</button>
                 </article>

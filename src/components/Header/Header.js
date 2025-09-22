@@ -2,7 +2,6 @@ import React from "react";
 import Navbar from "./../Navbar/Navbar"; 
 import "./Header.css";
 import { Link } from "react-router-dom";
-import Formulario from "../Formulario/Formulario";
 function Header() {
   return (
     <header className="header">
@@ -12,7 +11,6 @@ function Header() {
           <h1 className="site-title">Popcorn Studio</h1>
         </section>
         <Navbar/>
-        <Formulario/>
       </div>
     </header>
   );
