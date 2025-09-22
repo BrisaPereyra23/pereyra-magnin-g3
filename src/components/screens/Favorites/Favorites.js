@@ -43,13 +43,13 @@ class Favorites extends Component {
 
   render() {
     return (
-      <div className="favorites-page">
+      <div className="container">
         <section className="header-section">
         <img src="/img/Logo_Peliculas.png" className="peliculas-image" alt="logo" />
         <h1 className="site-title">Popcorn Studio</h1>
         </section>
-        <h2 className="Fav">Mis Favoritos</h2>
         <Navbar />
+        <h2 className="Fav">Mis Favoritos</h2>
         {this.state.favorites.length === 0 ? (
           <p>No tenés favoritos guardados todavía.</p>
         ) : (

@@ -5,9 +5,7 @@ nav {
     border-radius: 4px;
     margin-bottom: 20px;
 }
-.nav {
-    margin: 0 !important;
-}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -24,18 +22,11 @@ nav {
     font-weight: bold;
 }
 .search-form, .filter-form {
-    padding: .5rem 1rem;
-    display: grid;
-    grid-template-columns: 4fr 1fr;
-    column-gap: 5px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
 }
-.filter-form {
-    grid-template-columns: 1fr;
-}
-.search-form .btn-sm {
-    line-height: 1;
-    font-size: 0.9rem;
-}
+
 .search-form input,
 .filter-form input {
     border: 1px solid #ccc;
@@ -46,9 +37,6 @@ nav {
     font-size: 1rem;
     padding-bottom: 4px;
 }
-.filter-form input {
-    line-height: 1.5;
-}
 .cards {
     padding: 0.75rem 1.25rem;
     display: flex;
@@ -58,7 +46,7 @@ nav {
     margin-bottom: 2%;
 }
 button {
-    font-size: 12px;
+  font-size: 12px;
   margin: 5px;
   background-color: #750404;
   color: #fff;
@@ -128,6 +116,15 @@ p.card-text {
     font-size: 10px;
     margin: -4px;
     background: #ccc;
+}
+.search-form input[type="text"] {
+    width: 96%;
+    max-width: 93%;
+    padding: 12px;
+    font-size: 18px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    margin-right: 362px;
 }
 .detalle {
     font-size: 10px;
