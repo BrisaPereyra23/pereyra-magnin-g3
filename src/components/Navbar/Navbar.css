@@ -87,6 +87,14 @@ ul.nav-menu {
   border-radius: 50%;
   margin-left: 10px;
 }
+.search-form, .filter-form {
+    display: flex
+;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 30%;
+    
+}
 
 @media (max-width: 765px) {
   nav.navbar {
