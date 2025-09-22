@@ -29,5 +29,5 @@ function NavBar() {
 
 export default NavBar;
 
-// bueno esto creo que esta bien ya asi que deberia de funcar pero deje lo que pusimos antes en verde a ver que onda
+
 

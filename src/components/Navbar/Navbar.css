@@ -88,10 +88,8 @@ ul.nav-menu {
   margin-left: 10px;
 }
 
-/* Responsive */
 @media (max-width: 765px) {
   nav.navbar {
-    grid-template-columns: 1fr; /* logo arriba, menú y usuario abajo */
     row-gap: 10px;
     text-align: center;
   }

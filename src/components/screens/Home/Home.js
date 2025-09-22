@@ -3,6 +3,7 @@ import Header from "../../Header/Header";
 import { Link } from "react-router-dom";
 import "./Home.css";
 import NotFound from "../NotFound/NotFound";
+import Loader from "../../Loader/Loader";
 
 class Home extends Component {
   constructor(props) {
@@ -81,22 +82,28 @@ class Home extends Component {
   }
 
   manejarDescripcion(id) {
-    let visible;
+  let visible = this.state.descripcionVisible;
 
-    if (this.state.descripcionVisible.filter(item => item === id).length > 0) {
-      
-      visible = this.state.descripcionVisible.filter(item => item !== id);
-    } else {
-      
-      visible = this.state.descripcionVisible.concat(id);
-    }
-
-    this.setState({ descripcionVisible: visible });
+  if (visible.includes(id)) { 
+    visible = visible.filter(function (item) {
+      return item !== id;
+    });
+  } else {
+    let nuevo = [];
+    visible.map(function (item) {
+      nuevo.push(item);
+    });
+    nuevo.push(id);
+    visible = nuevo;
   }
+
+  this.setState({ descripcionVisible: visible });
+}
+
 
   render() {
     if (this.state.loading) {
-      return <p>Cargando...</p>;
+      return <p><Loader/></p>;
     }
 
     if (this.state.error) {

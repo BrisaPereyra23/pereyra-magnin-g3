@@ -29,7 +29,6 @@ function App() {
         <Route path="/series" component={Series} /> 
         <Route path="/series/popular" component={Series} />
         <Route path="/favorites" component={Favorites} />
-        {/*<Route path="/results/:query" component={Results} />  SI  NO QUEREMOS DIFERENCIAR SERIES Y PELICULAS*/} 
         <Route path="/results/:tipo/:query" component={Results} /> 
         <Route path="*" component={NotFound} />
       </Switch>
