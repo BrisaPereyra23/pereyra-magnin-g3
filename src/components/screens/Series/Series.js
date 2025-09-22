@@ -163,7 +163,15 @@ class Series extends Component {
             ? "Series Populares"
             : "Todas las Series"}
         </h2>
-
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Filtrar series..."
+            value={this.state.filter}
+            onChange={this.manejarFiltro}
+            className="form-control"
+          />
+        </div>
         <section className="row cards all-series" id="series">
           {seriesFiltradas.map((serie) => {
             const esFavorito = favoritos.find(f => f.id === serie.id && f.type === "tv");
