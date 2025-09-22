@@ -27,43 +27,46 @@ class Series extends Component {
       this.setState({ favoritos: JSON.parse(favs) });
     }
   }
-
   fetchSeries = () => {
     const { categoria } = this.props.match.params;
     let url = "";
 
-    if (categoria === "popular") {
-      url = `https://api.themoviedb.org/3/tv/popular?language=es-ES&page=${this.state.page}&api_key=2277889cc1ea5b292e88819d7f7e0ff2`;
-    } else if (categoria === undefined) {
-      url = `https://api.themoviedb.org/3/tv/popular?language=es-ES&page=${this.state.page}&api_key=2277889cc1ea5b292e88819d7f7e0ff2`;
-    } else {
-      this.props.history.push("/NotFound");
-      return;
-    }
+      if (categoria === "popular") {
+       url = `https://api.themoviedb.org/3/tv/popular?language=es-ES&page=${this.state.page}&api_key=2277889cc1ea5b292e88819d7f7e0ff2`;
+      } else if (categoria === undefined) {
+        url = `https://api.themoviedb.org/3/tv/popular?language=es-ES&page=${this.state.page}&api_key=2277889cc1ea5b292e88819d7f7e0ff2`;
+      } else {
+       this.props.history.push("/NotFound");
+        return;
+        }
 
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        let resultados = data && data.results ? data.results : [];
+       let resultados = data && data.results ? data.results : [];
         let nuevas = [];
 
         if (this.state.page === 1) {
-          nuevas = resultados;
-        } else {
-          this.state.series.forEach(serie => nuevas.push(serie));
-          resultados.forEach(serie => nuevas.push(serie));
+         nuevas = resultados;
+       } else {
+         this.state.series.map(function(serie) {
+          nuevas.push(serie);
+          });
+          resultados.map(function(serie) {
+            nuevas.push(serie);
+          });
         }
 
         this.setState({
-          series: nuevas,
-          cargando: false,
-          error: null,
+         series: nuevas,
+         cargando: false,
+         error: null,
         });
-      })
-      .catch((error) => {
-        this.setState({ error, cargando: false });
-      });
-  };
+        })
+        .catch((error) => {
+         this.setState({ error, cargando: false });
+          });
+          };
 
   cargarMas = () => {
     this.setState(
@@ -104,14 +107,17 @@ class Series extends Component {
     this.setState({ favoritos });
   };
 
+ 
   manejarDescripcion(id) {
     let visible = this.state.descripcionVisible;
 
     if (visible.includes(id)) {
+    
       visible = visible.filter(function (item) {
         return item !== id;
       });
     } else {
+     
       let nuevo = [];
       visible.map(function (item) {
         nuevo.push(item);
@@ -122,6 +128,7 @@ class Series extends Component {
 
     this.setState({ descripcionVisible: visible });
   }
+
 
   render() {
     const { series, cargando, error, filter, favoritos } = this.state;

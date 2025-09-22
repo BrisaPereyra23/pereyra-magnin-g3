@@ -65,21 +65,23 @@ class Results extends Component {
         this.setState({ error, cargando: false });
       });
   };
+ manejarDescripcion(id) {
+  let visible = this.state.descripcionVisible;
 
-  manejarDescripcion(id) {
-    let visible = this.state.descripcionVisible;
+  if (visible.includes(id)) { 
+    visible = visible.filter(function (item) {
+      return item !== id;
+    });
+  } else {
+    let nuevo = [];
+    visible.map(function (item) {
+      nuevo.push(item);
+    });
+    nuevo.push(id);
+    visible = nuevo;
+  }  this.setState({ descripcionVisible: visible }); 
+} 
 
-    if (visible.includes(id)) {
-      visible = visible.filter(function (item) {
-        return item !== id;
-      });
-    } else {
-      let nuevo = [...visible, id];
-      visible = nuevo;
-    }
-
-    this.setState({ descripcionVisible: visible });
-  }
 
   render() {
     const resultadosMovies = this.state.resultadosMovies;
@@ -94,7 +96,7 @@ class Results extends Component {
       return <Loader />;
     }
     if (error) {
-      return <NotFound />;
+      return <NotFound/>;
     }
 
     const resultados =

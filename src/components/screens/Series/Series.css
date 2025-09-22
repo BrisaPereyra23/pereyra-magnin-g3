@@ -1,33 +1,45 @@
-.card-text {
-  color: white;
+.all-series .card-text {
+  font-size: 12px;
   font-family: monospace;
+  color: white;
   background-color: #750404;
   padding: 8px;
   border-radius: 4px;
-}
-.all-series .single-card-series {
-    width: 22%;
-    margin: 10px;
-    display: flex;
-    border-radius: 5px;
-    background: #8f9196;
-    align-items: center;
-    flex-direction: column;
-}
-.card-img-top {
-    width: 85%;
-    border-radius: 8px;
-    padding-top: 3px;
-}
-
-
-p.card-text {
-  font-size: 12px;
   margin: -4px;
   display: flex;
   align-items: flex-end;
-  background-color: white;
-  color: black;
+}
+
+
+.card-img-top {
+  width: 85%;
+  border-radius: 8px;
+  padding-top: 3px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+button {
+  font-size: 12px;
+  margin: 10px;
+  background-color: #2e2f33;
+  border: none;
+  font-family: monospace;
+  border-radius: 3px;
+  padding: 8px 12px;
+  color: white;
+  cursor: pointer;
 }
 
 .btn-ver-mas {
@@ -55,20 +67,6 @@ p.card-text {
   cursor: pointer;
 }
 
-h5 {
-  font-size: 14px;
- 
-}
-
-.card-body {
-  display: flex;
-  flex-direction: column;
-  margin: 15px;
-  align-items: baseline;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-
 a.btn-ver-todas,
 .btn-ver-todas {
   font-size: 17px;
@@ -79,13 +77,19 @@ a.btn-ver-todas,
   color: #e3d4d4;
   border: none;
   cursor: pointer;
+  margin: 10px;
   text-decoration: none;
   display: inline-block;
 }
-
-
-
-
+.all-series .single-card-series {
+  width: 22%;
+  margin: 10px;
+  display: flex;
+  border-radius: 5px;
+  background: #8f9196;
+  align-items: center;
+  flex-direction: column;
+}
 
 @media (max-width: 480px) {
   .all-series .single-card-series {
@@ -94,30 +98,9 @@ a.btn-ver-todas,
     display: block;
   }
 
-  .card-text,
-  p.card-text {
-    font-size: 12px;
-    margin: 5px 0;
-    padding: 8px;
-    border-radius: 4px;
-    display: block;
-    color: black;
-    background-color: #fff;
-  }
-
-  h5 {
-    font-size: 16px;
-    margin: 5px 0;
-  }
-
-  .btn-ver-mas,
-  .btn-favorito,
-  a.btn-ver-todas,
-  .btn-ver-todas {
+  .card-img-top {
     width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    font-size: 14px;
+    padding-top: 3px;
   }
 
   .card-body {
@@ -125,5 +108,30 @@ a.btn-ver-todas,
     align-items: flex-start;
     justify-content: flex-start;
     margin: 10px 0;
+  }
+
+  .card-text {
+    font-size: 12px;
+    margin: 5px 0;
+    padding: 5px;
+    display: block;
+    color: black;
+    background: #ccc;
+  }
+
+  h5 {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+
+  button,
+  .btn-favorito,
+  .btn-ver-mas,
+  a.btn-ver-todas,
+  .btn-ver-todas {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+    margin-bottom: 10px;
   }
 }

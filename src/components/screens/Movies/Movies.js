@@ -161,7 +161,7 @@ class Movies extends Component {
         </section>
         <Navbar />
         <h2 className="alert alert-primary">
-          {this.props.match.params.categoria === "popular"
+          {this.props.match.params.categoria === "popular" 
             ? "Películas Populares"
             : "Todas las Películas"}
         </h2>

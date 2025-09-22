@@ -1,4 +1,4 @@
-//2277889cc1ea5b292e88819d7f7e0ff2
+
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Loader from "../../Loader/Loader";
@@ -53,7 +53,7 @@ class MoviesDetail extends Component {
       <p><strong>Duración:</strong> {movie.runtime} min</p>
       <p><strong>Sinópsis:</strong> {movie.overview}</p>
       
-      {movie.genres && (
+      {movie.genres && ( 
         <p>
           <strong>Géneros:</strong>{" "}
           {movie.genres.map((g, i) => (
@@ -65,7 +65,7 @@ class MoviesDetail extends Component {
         </p>
       )}
 
-      <p><strong>ID:</strong> {movie.id}</p>
+    
     </div>
   );
 }

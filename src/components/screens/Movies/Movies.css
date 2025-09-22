@@ -1,20 +1,46 @@
+
 .card-text {
-  color: white;
+  font-size: 12px;
   font-family: monospace;
+  color: white;
   background-color: #750404;
   padding: 8px;
   border-radius: 4px;
+  margin: -4px;
+  display: flex;
+  align-items: flex-end;
 }
 
-p.card-text
- {
-    font-size: 10px;
-    margin: -4px;
-    display: flex;
-    align-items: flex-end;
-    background: #ccc;
-    color: black;
+.card-img-top {
+  width: 85%;
+  border-radius: 8px;
+  padding-top: 3px;
 }
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+h5 {
+  font-size: 14px;
+}
+button {
+  font-size: 12px;
+  margin: 10px;
+  background-color: #2e2f33;
+  border: none;
+  font-family: monospace;
+  border-radius: 3px;
+  padding: 8px 12px;
+  color: white;
+  cursor: pointer;
+}
+
 .btn-ver-mas {
   font-size: 12px;
   font-family: monospace;
@@ -28,39 +54,7 @@ p.card-text
   display: inline-block;
   cursor: pointer;
 }
-.single-card-movie
- {
-    width: 22%;
-    align-items: center;
-    display: flex;
-    padding: 5px;
-    flex-direction: column;
-    background: #8f9196;
-    border-radius: 5px;
-    align-content: center;
-    justify-content: flex-start;
-}
-.all-movies .single-card-movie {
-    width: 22%;
-    margin: 10px;
-}
-.card-img-top {
-    width: 85%;
-    border-radius: 5px;
-    padding-top: 3px;
-}
-button
- {
-    font-size: 12px;
-    margin: 10px;
-    background-color: #2e2f33;
-    border: none;
-    font-family: monospace;
-    border-radius: 3px;
-    padding: 8px 12px;
-    color: white;
-    cursor: pointer;
-}
+
 .btn-favorito {
   font-size: 12px;
   margin: 5px;
@@ -72,109 +66,43 @@ button
   cursor: pointer;
 }
 
-h5 {
-  font-size: 14px;
-
+a.btn-ver-todas,
+.btn-ver-todas {
+  font-size: 17px;
+  font-weight: bolder;
+  background-color: #000c35;
+  border-radius: 3px;
+  padding: 13px;
+  color: #e3d4d4;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+  text-decoration: none;
+  display: inline-block;
 }
-
-.card-body {
-    display: flex;
-    flex-direction: column;
-    margin: 15px;
-    align-items: baseline;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-a.btn-ver-todas, .btn-ver-todas
- {
-    font-size: 17px;
-    font-weight: bolder;
-    background-color: #000c35;
-    border-radius: 3px;
-    padding: 13px;
-    color: #e3d4d4;
-    border: none;
-    cursor: pointer;
-    margin: 10px;
-    text-decoration: none;
-    display: inline-block;
+.single-card-movie {
+  width: 22%;
+  align-items: center;
+  display: flex;
+  padding: 5px;
+  flex-direction: column;
+  background: #8f9196;
+  border-radius: 5px;
+  align-content: center;
+  justify-content: flex-start;
 }
 
 .all-movies .single-card-movie {
-    width: 20%;
-    margin: 10px;
+  width: 22%;
+  margin: 10px;
 }
-p.card-text {
-    font-size: 10px;
-    margin: -4px;
-}
-p.card-text
-
- {
-    font-size: 12px;
-    margin: -29px;
-    display: flex
-;
-    align-items: flex-end;
-    color: black;
-    padding: -18px;
-}
-p.card-text {
-  font-size: 12px;
-  margin: -4px;
-}
-
 @media (max-width: 480px) {
-
-  .single-card-movie {
-    width: 90%; 
+  .single-card-movie,
+  .all-movies .single-card-movie {
+    width: 90%;
     padding: 10px;
-    margin-bottom: 10px;
+    margin: 10px 0;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-  }
-
-  .card-img-top {
-    width: 100%;
-    padding-top: 3px;
-  }
-
-  .card-body {
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin: 10px 0;
-  }
-
-  p.card-text {
-    font-size: 12px;
-    margin: 5px 0; 
-    padding: 5px;
-    display: block; 
-    color: black;
-    background: #ccc;
-  }
-
-  h5 {
-    font-size: 16px;
-    margin: 5px 0;
-  }
-
-  button,
-  .btn-favorito,
-  .btn-ver-mas,
-  a.btn-ver-todas,
-  .btn-ver-todas {
-    width: 100%; 
-    font-size: 14px;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-
-  .all-movies .single-card-movie {
-    width: 90%;
-    margin: 10px 0;
-  }
-}
+  } }
