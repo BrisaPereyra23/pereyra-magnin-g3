@@ -1,20 +1,18 @@
 .all-series .card-text {
   font-size: 12px;
   font-family: monospace;
-  color: white;
   background-color: #750404;
-  padding: 8px;
   border-radius: 4px;
-  margin: -4px;
   display: flex;
   align-items: flex-end;
+  display: flex;
+  align-items: center;
 }
-
 
 .card-img-top {
   width: 85%;
   border-radius: 8px;
-  padding-top: 3px;
+  
 }
 
 .card-body {
