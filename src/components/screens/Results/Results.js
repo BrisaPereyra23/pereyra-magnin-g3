@@ -22,13 +22,16 @@ class Results extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (
-      prevProps.match.params.query !== this.props.match.params.query ||
-      prevProps.match.params.tipo !== this.props.match.params.tipo
-    ) {
-      this.setState({ cargando: true }, () => this.fetchResults());
-    }
+  const queryCambio = prevProps.match.params.query !== this.props.match.params.query;
+  const tipoCambio = prevProps.match.params.tipo !== this.props.match.params.tipo;
+
+  if (queryCambio) {
+    this.setState({ cargando: true }, () => this.fetchResults());
+  } else if (tipoCambio) {
+    this.setState({ cargando: true }, () => this.fetchResults());
   }
+}
+
 
   fetchResults = () => {
     const tipoBusqueda = this.props.match.params.tipo;
